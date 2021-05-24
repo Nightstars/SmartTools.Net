@@ -11,6 +11,7 @@
     d:DesignHeight="1200" d:DesignWidth="1600"
     BorderThickness="0"
     Background="#FFF" mc:Ignorable="d"
+    DataContext="{Binding Source={StaticResource Locator},Path=Main}"
     >
     <!--DataContext="{Binding Source={StaticResource Locator},Path=Main}">-->
     <!--<Metro:MetroWindow.Menu>
@@ -70,24 +71,24 @@
         </Metro:MetroContextMenu>
     </Metro:MetroWindow.ContextMenu>-->
     <!--<Grid Background="{Binding MainBackground}">-->
-    <Grid>
-        <!--<Metro:AduTabControl Background="#FFF" SelectedIndex="{Binding SelectedModularIndex}">
+    <Grid Background="{Binding MainBackground}">
+        <Metro:AduTabControl Background="#FFF" SelectedIndex="{Binding SelectedModularIndex}">
             <Metro:AduTabControl.Resources>
                 <Style TargetType="TabPanel">
                     <Setter Property="HorizontalAlignment" Value="Center"/>
                 </Style>
             </Metro:AduTabControl.Resources>
-            <Metro:AduTabItem Header="实用案例">
+            <Metro:AduTabItem Header="Code less">
                 <Border BorderBrush="{StaticResource DefaultBorderBrush}" BorderThickness="0,1,0,0">
                     <ContentControl  Content="{Binding PracticalCase}"/>
                 </Border>
             </Metro:AduTabItem>
-            <Metro:AduTabItem Header="常用控件">
+            <Metro:AduTabItem Header="我的">
                 <Border BorderBrush="{StaticResource DefaultBorderBrush}" BorderThickness="0,1,0,0">
                     <ContentControl Content="{Binding CommonControlCase}"/>
                 </Border>
             </Metro:AduTabItem>
-            <Metro:AduTabItem Header="关于AduSkin">
+            <!--<Metro:AduTabItem Header="关于AduSkin">
                 <Border BorderBrush="{StaticResource DefaultBorderBrush}" BorderThickness="0,0,0,0">
                     <ContentControl Content="{Binding AduSkinAbout}"/>
                 </Border>
@@ -96,7 +97,7 @@
                 <Border >
                     <ContentControl Content="{Binding AduSkinSupport}"/>
                 </Border>
-            </Metro:AduTabItem>
-        </Metro:AduTabControl>-->
+            </Metro:AduTabItem>-->
+        </Metro:AduTabControl>
     </Grid>
 </Metro:MetroWindow>
