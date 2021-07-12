@@ -4,7 +4,7 @@
       <vm:ViewModelLocator xmlns:vm="clr-namespace:AduChat"
                            x:Key="Locator" />
   </Application.Resources>
-  
+
   In the View:
   DataContext="{Binding Source={StaticResource Locator}, Path=ViewModelName}"
 
@@ -29,7 +29,7 @@ namespace SmartTools_CS.ViewModel
       /// </summary>
       public ViewModelLocator()
       {
-         ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+         //ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
          ////if (ViewModelBase.IsInDesignModeStatic)
          ////{
@@ -42,14 +42,15 @@ namespace SmartTools_CS.ViewModel
          ////    SimpleIoc.Default.Register<IDataService, DataService>();
          ////}
 
-         SimpleIoc.Default.Register<MainViewModel>();
+         //SimpleIoc.Default.Register<MainViewModel>();
       }
 
       public MainViewModel Main
       {
          get
          {
-            return ServiceLocator.Current.GetInstance<MainViewModel>();
+            //return ServiceLocator.Current.GetInstance<MainViewModel>();
+            return new MainViewModel();
          }
       }
 
