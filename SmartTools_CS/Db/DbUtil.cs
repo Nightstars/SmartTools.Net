@@ -10,7 +10,7 @@ namespace SmartTools_CS.Db
     class DbUtil
     {
         //创建SqlSugarClient
-        public SqlSugarClient GetInstance(string connectionString)
+        public static SqlSugarClient GetInstance(string connectionString)
         {
             //创建数据库对象
             SqlSugarClient db = new SqlSugarClient(new ConnectionConfig()

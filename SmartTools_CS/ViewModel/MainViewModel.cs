@@ -27,7 +27,7 @@ namespace SmartTools_CS.ViewModel
       public int SelectedModularIndex
       {
          get { return _SelectedModularIndex; }
-         set { 
+         set {
             Set(ref _SelectedModularIndex, value);
             if (value == 2)
                MainBackground = new SolidColorBrush(Color.FromRgb(255, 255, 255));
@@ -65,7 +65,7 @@ namespace SmartTools_CS.ViewModel
         /// <summary>
         /// 常见控件
         /// </summary>
-        private UserControl _CommonControlCase = new UserControl1();
+        private UserControl _CommonControlCase = new CodeLessControl();
         public UserControl CommonControlCase
         {
             get { return _CommonControlCase; }
@@ -74,7 +74,7 @@ namespace SmartTools_CS.ViewModel
         /// <summary>
         /// 实用案例
         /// </summary>
-        private UserControl _PracticalCase = new UserControl1();
+        private UserControl _PracticalCase = new CodeLessControl();
         public UserControl PracticalCase
         {
             get { return _PracticalCase; }
@@ -83,7 +83,7 @@ namespace SmartTools_CS.ViewModel
         /// <summary>
         /// 关于
         /// </summary>
-        private UserControl _AduSkinAbout = new UserControl1();
+        private UserControl _AduSkinAbout = new CodeLessControl();
         public UserControl AduSkinAbout
         {
             get { return _AduSkinAbout; }
@@ -92,7 +92,7 @@ namespace SmartTools_CS.ViewModel
         /// <summary>
         /// 支持与赞助
         /// </summary>
-        private UserControl _AduSkinSupport = new UserControl1();
+        private UserControl _AduSkinSupport = new CodeLessControl();
         public UserControl AduSkinSupport
         {
             get { return _AduSkinSupport; }

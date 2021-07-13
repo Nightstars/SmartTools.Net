@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SmartTools_CS.Models
 {
-    class DataBaseInfo
+    public class DataBaseInfo
     {
         /// <summary>
         /// database name
