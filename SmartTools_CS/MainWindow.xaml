@@ -6,7 +6,7 @@
     xmlns:AduOpenLink="clr-namespace:AduSkin.Interactivity;assembly=AduSkin"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="SmartTools" MinWidth="800" MinHeight="550"
+    Title="SmartTools .Net" MinWidth="800" MinHeight="550"
     Width="800" Height="550"
     d:DesignHeight="1200" d:DesignWidth="1600"
     BorderThickness="0"
