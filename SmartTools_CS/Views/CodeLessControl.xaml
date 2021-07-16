@@ -96,7 +96,5 @@
                 Click="GenCode_Click"
             />
         </Grid>
-        <ComboBox HorizontalAlignment="Left" Margin="52,-171,0,0" VerticalAlignment="Top" Width="120"/>
-
     </Grid>
 </UserControl>
