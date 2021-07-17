@@ -1,5 +1,6 @@
 ﻿using AduSkin.Controls.Metro;
 using HandyControl.Controls;
+using SmartTools.Net.CustomControls;
 using SmartTools.Net.Services;
 using SmartTools_CS.Db;
 using SmartTools_CS.Models;
@@ -35,6 +36,7 @@ namespace SmartTools_CS.Views
         #region connect database
         private void connect_Click(object sender, RoutedEventArgs e)
         {
+            var logading = Dialog.Show(new Loading());
             if (string.IsNullOrWhiteSpace(codeLessVM.connectString))
             {
                 HandyControl.Controls.MessageBox.Error("连接字符串不能为空!");
@@ -48,18 +50,21 @@ namespace SmartTools_CS.Views
                 databases.ItemsSource = codeLessVM.databaselist;
                 databases.SelectedValuePath = "name";
                 databases.DisplayMemberPath = "name";
-                HandyControl.Controls.MessageBox.Success("数据库连接成功");
+                //HandyControl.Controls.MessageBox.Success("数据库连接成功");
+
             }
             catch (Exception ex)
             {
                 HandyControl.Controls.MessageBox.Error(ex.Message);
             }
+            logading.Close();
         }
         #endregion
 
         #region databases_Selected
         private void databases_Selected(object sender, RoutedEventArgs e)
         {
+            var logading = Dialog.Show(new Loading());
             if (string.IsNullOrWhiteSpace(codeLessVM.connectString))
             {
                 HandyControl.Controls.MessageBox.Error("连接字符串不能为空!");
@@ -84,43 +89,43 @@ namespace SmartTools_CS.Views
             {
                 HandyControl.Controls.MessageBox.Error(ex.Message);
             }
+            logading.Close();
         }
         #endregion
 
         #region GenCode_Click
         private void GenCode_Click(object sender, RoutedEventArgs e)
         {
-            //using var Db = DbUtil.GetInstance(codeLessVM._connectString);
-            //string sql = $@"use {codeLessVM._database}
-            //                select
-            //                A.name as tableName, --表名
-            //                B.name as columnName, --列名
-            //                C.value as columnDescription, --列名备注
-            //                T.type,--类型
-            //                T.length--长度
-            //                from sys.tables A
-            //                inner join sys.columns B on B.object_id = A.object_id
-            //                left join sys.extended_properties C on C.major_id = B.object_id and C.minor_id = B.column_id
-            //                inner join (SELECT syscolumns.name AS name,systypes.name AS type,syscolumns.length AS length 
-            //                 FROM syscolumns INNER JOIN systypes ON systypes.xtype=syscolumns.xtype
-            //                 WHERE id=(SELECT id FROM sysobjects WHERE  name='{codeLessVM._dbTable}' and systypes.name<> 'sysname')
-            //                )T on T.name=B.name
-            //                where A.name = '{codeLessVM._dbTable}' order by b.name ";
-            //var t = Db.Ado.SqlQuery<DbTableInfo>(sql);
+            var logading = Dialog.Show(new Loading());
 
-            //ResourceDictionary dict = new ResourceDictionary();
-            //if (_currentLan == "zh-cn")
-            //{
-            //    dict.Source = new Uri(@"Resources\Language\en-us.xaml", UriKind.Relative);
-            //    _currentLan = "en-us";
-            //}
-            //else
-            //{
-            //    dict.Source = new Uri(@"Resources\Language\zh-cn.xaml", UriKind.Relative);
-            //    _currentLan = "zh-cn";
-            //}
-            //Application.Current.Resources.MergedDictionaries[1] = dict;
-            codeLessVM.Database = "";
+            if (string.IsNullOrWhiteSpace(codeLessVM.connectString))
+            {
+                HandyControl.Controls.MessageBox.Error("连接字符串不能为空!");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(codeLessVM.database))
+            {
+                HandyControl.Controls.MessageBox.Error("请选择数据库!");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(codeLessVM.dbTable))
+            {
+                HandyControl.Controls.MessageBox.Error("请选择数据库表!");
+                return;
+            }
+
+            try
+            {
+                var tbinfo = new CodeLessService(codeLessVM.connectString).GetDbTableInfo(codeLessVM.database,codeLessVM.dbTable);
+            }
+            catch (Exception ex)
+            {
+
+                HandyControl.Controls.MessageBox.Error(ex.Message);
+            }
+            logading.Close();
         }
         #endregion
 
