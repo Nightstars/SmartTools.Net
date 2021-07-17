@@ -11,7 +11,6 @@
     d:DesignHeight="1200" d:DesignWidth="1600"
     BorderThickness="0"
     Background="#FFF" mc:Ignorable="d"
-    DataContext="{Binding Source={StaticResource Locator},Path=Main}"
     >
     <!--DataContext="{Binding Source={StaticResource Locator},Path=Main}">-->
     <!--<Metro:MetroWindow.Menu>
@@ -71,19 +70,19 @@
         </Metro:MetroContextMenu>
     </Metro:MetroWindow.ContextMenu>-->
     <!--<Grid Background="{Binding MainBackground}">-->
-    <Grid Background="{Binding MainBackground}">
+    <Grid DataContext="{Binding Source={StaticResource Locator},Path=Main}" Background="{Binding MainBackground}">
         <Metro:AduTabControl Background="#FFF" SelectedIndex="{Binding SelectedModularIndex}">
             <Metro:AduTabControl.Resources>
                 <Style TargetType="TabPanel">
                     <Setter Property="HorizontalAlignment" Value="Center"/>
                 </Style>
             </Metro:AduTabControl.Resources>
-            <Metro:AduTabItem Header="Code less">
+            <Metro:AduTabItem Header="{DynamicResource codeless}">
                 <Border BorderBrush="{StaticResource DefaultBorderBrush}" BorderThickness="0,1,0,0">
                     <ContentControl  Content="{Binding PracticalCase}"/>
                 </Border>
             </Metro:AduTabItem>
-            <Metro:AduTabItem Header="我的">
+            <Metro:AduTabItem Header="{DynamicResource mine}">
                 <Border BorderBrush="{StaticResource DefaultBorderBrush}" BorderThickness="0,1,0,0">
                     <ContentControl Content="{Binding CommonControlCase}"/>
                 </Border>

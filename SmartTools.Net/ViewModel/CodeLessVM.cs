@@ -2,12 +2,23 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace SmartTools_CS.ViewModel
 {
     public class CodeLessVM : INotifyPropertyChanged
     {
+        #region initiazlize
         public event PropertyChangedEventHandler PropertyChanged;
+
+        private void Notify([CallerMemberName] string obj = "")
+        {
+            if (PropertyChanged != null)
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(obj));
+            }
+        }
+        #endregion
 
         #region 数据库列表
         /// <summary>
@@ -20,22 +31,12 @@ namespace SmartTools_CS.ViewModel
         /// <summary>
         /// 数据库连接字符串
         /// </summary>
-        public String _connectString= "Database=CMS;Server=192.168.0.151,61440;User ID = sa; Password = Dbwork2021;";
+        public String connectString= "Database=CMS;Server=127.0.0.1,6666;User ID = sa; Password = Ihavenoidea@0;";
 
         public string ConnectionString
         {
-            get
-            {
-                return _connectString;
-            }
-            set
-            {
-                _connectString = value;
-                if(PropertyChanged != null)
-                {
-                    PropertyChanged(this, new PropertyChangedEventArgs("ConnectionString"));
-                }
-            }
+            get{ return connectString; }
+            set{ connectString = value; Notify(); }
         }
         #endregion
 
@@ -43,22 +44,12 @@ namespace SmartTools_CS.ViewModel
         /// <summary>
         /// 数据库
         /// </summary>
-        public String _database = "";
+        public String database = "";
 
         public string Database
         {
-            get
-            {
-                return _database;
-            }
-            set
-            {
-                _database = value;
-                if (PropertyChanged != null)
-                {
-                    PropertyChanged(this, new PropertyChangedEventArgs("Database"));
-                }
-            }
+            get { return database; }
+            set { database = value; Notify(); }
         }
         #endregion
 
@@ -66,22 +57,12 @@ namespace SmartTools_CS.ViewModel
         /// <summary>
         /// 数据库表
         /// </summary>
-        public String _dbTable = "";
+        public String dbTable = "";
 
         public string DbTable
         {
-            get
-            {
-                return _dbTable;
-            }
-            set
-            {
-                _dbTable = value;
-                if (PropertyChanged != null)
-                {
-                    PropertyChanged(this, new PropertyChangedEventArgs("DbTable"));
-                }
-            }
+            get { return dbTable; }
+            set { dbTable = value; Notify(); }
         }
         #endregion
 

@@ -4,10 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:SmartTools_CS.Views"
-             xmlns:Metro="clr-namespace:AduSkin.Controls.Metro;assembly=AduSkin"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:Metro="clr-namespace:AduSkin.Controls.Metro;assembly=AduSkin" xmlns:viewmodel="clr-namespace:SmartTools_CS.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:CodeLessVM}"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
-    <Grid Name="Container">
+    <Grid>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
@@ -25,12 +26,12 @@
                 <ColumnDefinition Width="120"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Metro:AduFormLable Title="数据库连接" Margin="40,10,10,0" HorizontalAlignment="Left"/>
+            <Metro:AduFormLable Title="{DynamicResource connectString}" Margin="40,10,10,0" HorizontalAlignment="Left"/>
 
             <Metro:MetroTextBox
                 Margin="110,10,10,0"
-                InputHint="填写数据库连接字符串"
-                PopupHint="填写数据库连接字符串"
+                InputHint="{DynamicResource connectStrHint}"
+                PopupHint="{DynamicResource connectStrHint}"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Center"
                 Name="connectString"
@@ -38,18 +39,19 @@
                 Grid.Row="0"
             />
 
-            <!--<Metro:AduFormLable Title="fail" Margin="0,10,10,0" HorizontalAlignment="Right"/>-->
-
-            <Metro:AduFlatButton
+            <Button
                 Name="testConnect"
                 Margin="0,10,10,0"
-                Content="连接"
-                HorizontalAlignment="Right"
+                Content="{DynamicResource connectDb}"
+                HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                Type="info"
+                Style="{StaticResource ButtonPrimary}"
                 Grid.Column="1"
-                Click="testConnect_Click"
-            />
+                Click="connect_Click"
+                Width="100"
+                hc:BorderElement.CornerRadius="15"
+                />
+
         </Grid>
 
         <Grid Grid.Row="1">
@@ -60,16 +62,12 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Metro:AduFormLable Title="数据库" Margin="0,10,0,0" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+            <Metro:AduFormLable Title="{DynamicResource database}" Margin="0,10,0,0" VerticalAlignment="Center" HorizontalAlignment="Stretch">
                 <Metro:AduComboBox Name="databases" SelectedValue="{Binding Database}" HorizontalAlignment="Stretch"
-                                   VerticalAlignment="Center" Width="180" SelectionChanged="databases_Selected">
-
-                </Metro:AduComboBox>
+                                   VerticalAlignment="Center" Width="180" SelectionChanged="databases_Selected"/>
             </Metro:AduFormLable>
-            <Metro:AduFormLable Title="数据库表" Margin="0,10,0,0" VerticalAlignment="Center" Grid.Column="1">
-                <Metro:AduComboBox Name="dbtables" SelectedValue="{Binding DbTable}" VerticalAlignment="Center" Width="180">
-
-                </Metro:AduComboBox>
+            <Metro:AduFormLable Title="{DynamicResource dbtable}" Margin="0,10,0,0" VerticalAlignment="Center" Grid.Column="1">
+                <Metro:AduComboBox Name="dbtables" SelectedValue="{Binding DbTable}" VerticalAlignment="Center" Width="180"/>
             </Metro:AduFormLable>
         </Grid>
 
@@ -83,18 +81,19 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Metro:AduFlatButton
+            <Button
+                Name="GenCode"
                 Margin="10"
-                Content="生成代码"
+                Content="{DynamicResource generate}"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"
-                Type="info"
+                Style="{StaticResource ButtonPrimary}"
+                Grid.Column="1"
+                Click="GenCode_Click"
                 Width="180"
                 Height="60"
-                Grid.Column="1"
-                Name="GenCode"
-                Click="GenCode_Click"
-            />
+                hc:BorderElement.CornerRadius="30"
+                />
         </Grid>
     </Grid>
 </UserControl>

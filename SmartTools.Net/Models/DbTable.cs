@@ -13,14 +13,6 @@ namespace SmartTools_CS.Models
         /// </summary>
         public string name { get; set; }
 
-        /// <summary>
-        /// id
-        /// </summary>
-        public int id { get; set; }
 
-        /// <summary>
-        /// xtype
-        /// </summary>
-        public string xtype { get; set; }
     }
 }

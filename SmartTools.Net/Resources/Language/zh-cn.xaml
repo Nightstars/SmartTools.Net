@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=System.Runtime">
+    <system:String x:Key="connectString">数据库连接</system:String>
+    <system:String x:Key="codeless">Code less</system:String>
+    <system:String x:Key="mine">我的</system:String>
+    <system:String x:Key="connectStrHint">填写数据库连接字符串</system:String>
+    <system:String x:Key="connectDb">连接</system:String>
+    <system:String x:Key="database">数据库</system:String>
+    <system:String x:Key="dbtable">数据库表</system:String>
+    <system:String x:Key="generate">生成</system:String>
+</ResourceDictionary>

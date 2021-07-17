@@ -6,12 +6,16 @@
              d1p1:Ignorable="d"
              xmlns:vm="clr-namespace:SmartTools_CS.ViewModel"
              xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True"  />
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/SmartTools.Net;component/Style/BaseStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/SmartTools.Net;component/Style/BaseStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/SmartTools.Net;component/Resources/Language/zh-cn.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
