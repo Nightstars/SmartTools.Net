@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SmartTools_CS.Models
 {
-    class DbTableInfo
+    public class DbTableInfo
     {
         /// <summary>
         /// 表名

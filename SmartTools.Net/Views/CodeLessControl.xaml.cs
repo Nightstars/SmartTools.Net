@@ -2,6 +2,7 @@
 using HandyControl.Controls;
 using SmartTools.Net.CustomControls;
 using SmartTools.Net.Services;
+using SmartTools.Net.Utils;
 using SmartTools_CS.Db;
 using SmartTools_CS.Models;
 using SmartTools_CS.ViewModel;
@@ -30,6 +31,7 @@ namespace SmartTools_CS.Views
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             this.DataContext = codeLessVM;
+            new ControlUtil().HideBoundingBox(this);
         }
         #endregion
 
@@ -101,28 +103,46 @@ namespace SmartTools_CS.Views
             if (string.IsNullOrWhiteSpace(codeLessVM.connectString))
             {
                 HandyControl.Controls.MessageBox.Error("连接字符串不能为空!");
+                logading.Close();
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(codeLessVM.database))
             {
                 HandyControl.Controls.MessageBox.Error("请选择数据库!");
+                logading.Close();
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(codeLessVM.dbTable))
             {
                 HandyControl.Controls.MessageBox.Error("请选择数据库表!");
+                logading.Close();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(codeLessVM._rootnamespace))
+            {
+                HandyControl.Controls.MessageBox.Error("请填写命名空间!");
+                logading.Close();
                 return;
             }
 
             try
             {
                 var tbinfo = new CodeLessService(codeLessVM.connectString).GetDbTableInfo(codeLessVM.database,codeLessVM.dbTable);
+                new CodeBuilder(tbinfo,
+                    codeLessVM._rootnamespace,
+                    $"Wechat{FiledUtil.GetModelName(codeLessVM.dbTable)}",
+                    codeLessVM.database,
+                    codeLessVM.dbTable)
+                .BuildModel()
+                .BuildSearchModel()
+                .BuildService()
+                .BuildController();
             }
             catch (Exception ex)
             {
-
                 HandyControl.Controls.MessageBox.Error(ex.Message);
             }
             logading.Close();

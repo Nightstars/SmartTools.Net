@@ -31,7 +31,8 @@ namespace SmartTools_CS.ViewModel
         /// <summary>
         /// 数据库连接字符串
         /// </summary>
-        public String connectString= "Database=CMS;Server=127.0.0.1,6666;User ID = sa; Password = Ihavenoidea@0;";
+        //public String connectString= "Database=CMS;Server=127.0.0.1,6666;User ID = sa; Password = Ihavenoidea@0;";
+        public String connectString= "Database=CMS;Server=192.168.0.151,61440;User ID = sa; Password = Dbwork2021;";
 
         public string ConnectionString
         {
@@ -50,6 +51,19 @@ namespace SmartTools_CS.ViewModel
         {
             get { return database; }
             set { database = value; Notify(); }
+        }
+        #endregion
+
+        #region 数据库
+        /// <summary>
+        /// 数据库
+        /// </summary>
+        public String _rootnamespace = "";
+
+        public string Rootnamespace
+        {
+            get { return _rootnamespace; }
+            set { _rootnamespace = value; Notify(); }
         }
         #endregion
 

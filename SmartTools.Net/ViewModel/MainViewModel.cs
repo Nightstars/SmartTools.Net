@@ -1,5 +1,6 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using SmartTools.Net.Views.mine;
 using SmartTools_CS.Views;
 using System;
 using System.Collections.Generic;
@@ -63,16 +64,16 @@ namespace SmartTools_CS.ViewModel
       });
 
         /// <summary>
-        /// 常见控件
+        /// Mine
         /// </summary>
-        private UserControl _CommonControlCase = new CodeLessControl();
-        public UserControl CommonControlCase
+        private MineControl _CommonControlCase = new MineControl();
+        public MineControl CommonControlCase
         {
             get { return _CommonControlCase; }
             set { Set(ref _CommonControlCase, value); }
         }
         /// <summary>
-        /// 实用案例
+        /// CodeLess
         /// </summary>
         private UserControl _PracticalCase = new CodeLessControl();
         public UserControl PracticalCase
