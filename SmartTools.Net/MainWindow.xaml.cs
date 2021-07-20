@@ -31,7 +31,5 @@ namespace SmartTools.Net
             this.Icon = FileUtil.GetImage("icon.icon.png");
 
         }
-
-
     }
 }

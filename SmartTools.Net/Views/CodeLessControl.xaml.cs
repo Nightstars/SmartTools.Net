@@ -11,12 +11,14 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Runtime.Versioning;
 
 namespace SmartTools.Net.Views
 {
     /// <summary>
     /// UserControl1.xaml 的交互逻辑
     /// </summary>
+    [SupportedOSPlatform("windows10.0")]
     public partial class CodeLessControl : UserControl
     {
         #region initialize
@@ -143,8 +145,7 @@ namespace SmartTools.Net.Views
                 .BuildSearchModel()
                 .BuildService()
                 .BuildController();
-                var result = HandyControl.Controls.MessageBox.Show("是否打开输出文件夹？", "温馨提示", MessageBoxButton.OKCancel, MessageBoxImage.Question, MessageBoxResult.OK);
-                var rs = $@"{AppDomain.CurrentDomain.BaseDirectory}Oupput\";
+                var result = HandyControl.Controls.MessageBox.Show("生成成功,是否打开输出文件夹？", "温馨提示", MessageBoxButton.OKCancel, MessageBoxImage.Question, MessageBoxResult.OK);
                 if (result == MessageBoxResult.OK)
                 {
                     Process.Start("explorer.exe", $@"{AppDomain.CurrentDomain.BaseDirectory}Oupput\");

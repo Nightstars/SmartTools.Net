@@ -66,20 +66,20 @@ namespace SmartTools.Net.ViewModel
         /// <summary>
         /// Mine
         /// </summary>
-        private MineControl _CommonControlCase = new MineControl();
-        public MineControl CommonControlCase
+        private MineControl _mineControl = new MineControl();
+        public MineControl Mine
         {
-            get { return _CommonControlCase; }
-            set { Set(ref _CommonControlCase, value); }
+            get { return _mineControl; }
+            set { Set(ref _mineControl, value); }
         }
         /// <summary>
         /// CodeLess
         /// </summary>
-        private UserControl _PracticalCase = new CodeLessControl();
-        public UserControl PracticalCase
+        private UserControl _codeLessControl = new CodeLessControl();
+        public UserControl CodeLess
         {
-            get { return _PracticalCase; }
-            set { Set(ref _PracticalCase, value); }
+            get { return _codeLessControl; }
+            set { Set(ref _codeLessControl, value); }
         }
         /// <summary>
         /// 关于
