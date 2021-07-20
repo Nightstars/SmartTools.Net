@@ -1,7 +1,10 @@
 ﻿using AduSkin.Controls.Metro;
+using SmartTools.Net.Utils;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -14,7 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SmartTools_CS
+namespace SmartTools.Net
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -25,6 +28,10 @@ namespace SmartTools_CS
         {
             InitializeComponent();
             BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#52a9ff"));
+            this.Icon = FileUtil.GetImage("icon.icon.png");
+
         }
+
+
     }
 }

@@ -1,0 +1,30 @@
+﻿<Window x:Class="SmartTools.Net.BaseWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SmartTools.Net"
+        xmlns:themes="clr-namespace:SmartTools.Net.Themes"
+        mc:Ignorable="d"
+        Title="BaseWindow" Height="450" Width="800"
+        Style="{StaticResource Style.Window.Universal}"
+        Background="#409EFF"
+        >
+    <themes:UniversalWindowStyle.TitleBar>
+        <themes:UniversalTitleBar ForegroundColor="White" InactiveForegroundColor="#7FFFFFFF"
+                                  ButtonHoverForeground="White" ButtonHoverBackground="#3FFFFFFF"
+                                  ButtonPressedForeground="#7FFFFFFF" ButtonPressedBackground="#3F000000" />
+    </themes:UniversalWindowStyle.TitleBar>
+    <Grid Margin="0,30,0,0">
+
+        <TabControl Margin="10" Style="{StaticResource TabControlCapsuleSolid}" Background="#409EFF" BorderThickness="0,0,0,0">
+            <TabItem Header="选项卡1" BorderThickness="0,0,0,0">
+            </TabItem>
+            <TabItem Header="选项卡2" BorderThickness="0,0,0,0">
+            </TabItem>
+            <TabItem Header="选项卡3" BorderThickness="0,0,0,0">
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>

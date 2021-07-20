@@ -3,15 +3,16 @@ using HandyControl.Controls;
 using SmartTools.Net.CustomControls;
 using SmartTools.Net.Services;
 using SmartTools.Net.Utils;
-using SmartTools_CS.Db;
-using SmartTools_CS.Models;
-using SmartTools_CS.ViewModel;
+using SmartTools.Net.Db;
+using SmartTools.Net.Models;
+using SmartTools.Net.ViewModel;
 using System;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
-namespace SmartTools_CS.Views
+namespace SmartTools.Net.Views
 {
     /// <summary>
     /// UserControl1.xaml 的交互逻辑
@@ -25,6 +26,7 @@ namespace SmartTools_CS.Views
         {
             InitializeComponent();
             _currentLan = "zh-cn";
+            //this.Background = new ImageBrush() { ImageSource = FileUtil.GetImage("imgs.bg.png"), Stretch = Stretch.Fill, Opacity = 0.5 };
         }
         #endregion
 

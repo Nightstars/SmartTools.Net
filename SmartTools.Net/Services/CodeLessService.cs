@@ -1,12 +1,12 @@
-﻿using SmartTools_CS.Db;
-using SmartTools_CS.Models;
+﻿using SmartTools.Net.Db;
+using SmartTools.Net.Models;
 using SqlSugar;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DbTableInfo = SmartTools_CS.Models.DbTableInfo;
+using DbTableInfo = SmartTools.Net.Models.DbTableInfo;
 
 namespace SmartTools.Net.Services
 {

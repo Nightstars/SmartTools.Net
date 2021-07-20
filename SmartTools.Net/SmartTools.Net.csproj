@@ -9,9 +9,9 @@
   <PropertyGroup>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <Deterministic>false</Deterministic>
-    <ApplicationIcon>micon.ico</ApplicationIcon>
     <DebugType>none</DebugType>
     <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
+    <ApplicationIcon>micon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -23,6 +23,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\icon\icon-white.png" />
+    <None Remove="Resources\icon\icon.png" />
+    <None Remove="Resources\icon\micon.ico" />
+    <None Remove="Resources\imgs\bg.png" />
     <None Remove="Resources\Tpl\wechatapi\SmartTools.Net.controller.tpl" />
     <None Remove="Resources\Tpl\wechatapi\SmartTools.Net.model.tpl" />
     <None Remove="Resources\Tpl\wechatapi\SmartTools.Net.searchmodel.tpl" />
@@ -30,6 +34,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Resources\icon\icon-white.png" />
+    <EmbeddedResource Include="Resources\icon\icon.png" />
+    <EmbeddedResource Include="Resources\imgs\bg.png" />
     <EmbeddedResource Include="Resources\Tpl\wechatapi\SmartTools.Net.controller.tpl" />
     <EmbeddedResource Include="Resources\Tpl\wechatapi\SmartTools.Net.service.tpl" />
     <EmbeddedResource Include="Resources\Tpl\wechatapi\SmartTools.Net.searchmodel.tpl" />
@@ -46,7 +53,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\imgs\" />
+    <EmbeddedResource Include="Resources\icon\micon.ico" />
   </ItemGroup>
 
 </Project>

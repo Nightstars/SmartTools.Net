@@ -1,10 +1,10 @@
-﻿using SmartTools_CS.Models;
+﻿using SmartTools.Net.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace SmartTools_CS.ViewModel
+namespace SmartTools.Net.ViewModel
 {
     public class CodeLessVM : INotifyPropertyChanged
     {

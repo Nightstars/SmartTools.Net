@@ -1,7 +1,7 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using SmartTools.Net.Views.mine;
-using SmartTools_CS.Views;
+using SmartTools.Net.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace SmartTools_CS.ViewModel
+namespace SmartTools.Net.ViewModel
 {
    public class MainViewModel : ViewModelBase
    {

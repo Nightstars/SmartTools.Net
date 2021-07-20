@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmartTools_CS.Db
+namespace SmartTools.Net.Db
 {
     class DbUtil
     {
