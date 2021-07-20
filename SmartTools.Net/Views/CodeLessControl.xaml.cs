@@ -7,6 +7,7 @@ using SmartTools_CS.Db;
 using SmartTools_CS.Models;
 using SmartTools_CS.ViewModel;
 using System;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -140,6 +141,12 @@ namespace SmartTools_CS.Views
                 .BuildSearchModel()
                 .BuildService()
                 .BuildController();
+                var result = HandyControl.Controls.MessageBox.Show("是否打开输出文件夹？", "温馨提示", MessageBoxButton.OKCancel, MessageBoxImage.Question, MessageBoxResult.OK);
+                var rs = $@"{AppDomain.CurrentDomain.BaseDirectory}Oupput\";
+                if (result == MessageBoxResult.OK)
+                {
+                    Process.Start("explorer.exe", $@"{AppDomain.CurrentDomain.BaseDirectory}Oupput\");
+                }
             }
             catch (Exception ex)
             {
