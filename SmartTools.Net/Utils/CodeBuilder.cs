@@ -11,12 +11,39 @@ namespace SmartTools.Net.Utils
     public class CodeBuilder
     {
 		#region initialize
+		/// <summary>
+		/// 字段信息
+		/// </summary>
 		private List<DbTableInfo> _list;
+		/// <summary>
+		/// 命名空间
+		/// </summary>
 		private string _rootnamespace;
+		/// <summary>
+		/// 模块名称
+		/// </summary>
 		private string _modelName;
+		/// <summary>
+		/// 选中的数据库
+		/// </summary>
 		private string _database;
+		/// <summary>
+		/// 选中的表
+		/// </summary>
 		private string _tbname;
-		public CodeBuilder(List<DbTableInfo> ls, string rootnamespace, string modelName,string database,string tbname)
+		/// <summary>
+		/// 生成路径
+		/// </summary>
+		private string _buildpath;
+		/// <summary>
+		/// 项目类型
+		/// </summary>
+		private string _projtype;
+		/// <summary>
+		/// 输出类型
+		/// </summary>
+		private string _outputtype;
+		public CodeBuilder(List<DbTableInfo> ls, string rootnamespace, string modelName,string database,string tbname,string buildpath,string projtype,string outputtype)
         {
 			_list = ls;
 			_rootnamespace = rootnamespace;
@@ -30,7 +57,9 @@ namespace SmartTools.Net.Utils
             {
 				_tbname = tbname;
             }
-
+			_buildpath = buildpath;
+			_projtype = projtype;
+			_outputtype = outputtype;
         }
         #endregion
 
@@ -75,11 +104,20 @@ namespace SmartTools.Net.Utils
 			string text = FileUtil.GetTplContent("Tpl.wechatapi.SmartTools.Net.model.tpl");
 			text = text.Replace("$Rootnamespace$", $"{_rootnamespace}.Models");
 			text = text.Replace("$ModelName$", _modelName);
-			text = text.Replace("$GenDate$", DateTime.Now.ToString("yyyy-MM-ss HH:mm:ss"));
+			text = text.Replace("$GenDate$", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
 			text = text.Replace("$EntityField$", stringBuilder.ToString());
-			if (!Directory.Exists("./Oupput"))
-				Directory.CreateDirectory("./Oupput");
-			File.WriteAllText($"./Oupput/{_modelName}.cs", text, Encoding.UTF8);
+			if(_outputtype == "项目")
+            {
+				if (!Directory.Exists($"{_buildpath}/Models"))
+					Directory.CreateDirectory($"{_buildpath}/Models");
+				File.WriteAllText($"{_buildpath}/Models/{_modelName}.cs", text, Encoding.UTF8);
+			}
+            else
+            {
+				if (!Directory.Exists("./Oupput"))
+					Directory.CreateDirectory("./Oupput");
+				File.WriteAllText($"./Oupput/{_modelName}.cs", text, Encoding.UTF8);
+			}
 
 			return this;
 		}
@@ -126,11 +164,20 @@ namespace SmartTools.Net.Utils
 			string text = FileUtil.GetTplContent("Tpl.wechatapi.SmartTools.Net.searchmodel.tpl");
 			text = text.Replace("$Rootnamespace$", $"{_rootnamespace}.Data");
 			text = text.Replace("$ModelName$", _modelName);
-			text = text.Replace("$GenDate$", DateTime.Now.ToString("yyyy-MM-ss HH:mm:ss"));
+			text = text.Replace("$GenDate$", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
 			text = text.Replace("$EntityField$", stringBuilder.ToString());
-			if (!Directory.Exists("./Oupput"))
-				Directory.CreateDirectory("./Oupput");
-			File.WriteAllText($"./Oupput/{_modelName}SearchDto.cs", text, Encoding.UTF8);
+			if (_outputtype == "项目")
+			{
+				if (!Directory.Exists($"{_buildpath}/Data"))
+					Directory.CreateDirectory($"{_buildpath}/Data");
+				File.WriteAllText($"{_buildpath}/Data/{_modelName}SearchDto.cs", text, Encoding.UTF8);
+			}
+			else
+			{
+				if (!Directory.Exists("./Oupput"))
+					Directory.CreateDirectory("./Oupput");
+				File.WriteAllText($"./Oupput/{_modelName}SearchDto.cs", text, Encoding.UTF8);
+			}
 
 			return this;
 		}
@@ -165,11 +212,20 @@ namespace SmartTools.Net.Utils
 			text = text.Replace("$ModelName$", _modelName);
 			text = text.Replace("$Dadabase$", _database);
 			text = text.Replace("$Dbtable$", _tbname);
-			text = text.Replace("$GenDate$", DateTime.Now.ToString("yyyy-MM-ss HH:mm:ss"));
+			text = text.Replace("$GenDate$", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
 			text = text.Replace("$SearchFiled$", stringBuilder.ToString());
-			if (!Directory.Exists("./Oupput"))
-				Directory.CreateDirectory("./Oupput");
-			File.WriteAllText($"./Oupput/{_modelName}Service.cs", text, Encoding.UTF8);
+			if (_outputtype == "项目")
+			{
+				if (!Directory.Exists($"{_buildpath}/Services"))
+					Directory.CreateDirectory($"{_buildpath}/Services");
+				File.WriteAllText($"{_buildpath}/Services/{_modelName}Service.cs", text, Encoding.UTF8);
+			}
+			else
+			{
+				if (!Directory.Exists("./Oupput"))
+					Directory.CreateDirectory("./Oupput");
+				File.WriteAllText($"./Oupput/{_modelName}Service.cs", text, Encoding.UTF8);
+			}
 
 			return this;
 		}
@@ -184,10 +240,19 @@ namespace SmartTools.Net.Utils
 			string text = FileUtil.GetTplContent("Tpl.wechatapi.SmartTools.Net.controller.tpl");
 			text = text.Replace("$Rootnamespace$", _rootnamespace);
 			text = text.Replace("$ModelName$", _modelName);
-			text = text.Replace("$GenDate$", DateTime.Now.ToString("yyyy-MM-ss HH:mm:ss"));
-			if (!Directory.Exists("./Oupput"))
-				Directory.CreateDirectory("./Oupput");
-			File.WriteAllText($"./Oupput/{_modelName}Controller.cs", text, Encoding.UTF8);
+			text = text.Replace("$GenDate$", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+			if (_outputtype == "项目")
+			{
+				if (!Directory.Exists($"{_buildpath}/Controllers"))
+					Directory.CreateDirectory($"{_buildpath}/Controllers");
+				File.WriteAllText($"{_buildpath}/Controllers/{_modelName}Controller.cs", text, Encoding.UTF8);
+			}
+			else
+			{
+				if (!Directory.Exists("./Oupput"))
+					Directory.CreateDirectory("./Oupput");
+				File.WriteAllText($"./Oupput/{_modelName}Controller.cs", text, Encoding.UTF8);
+			}
 
 			return this;
 		}

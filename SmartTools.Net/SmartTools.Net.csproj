@@ -9,7 +9,7 @@
   <PropertyGroup>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <Deterministic>false</Deterministic>
-    <DebugType>none</DebugType>
+    <DebugType>full</DebugType>
     <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
     <ApplicationIcon>micon.ico</ApplicationIcon>
   </PropertyGroup>
@@ -49,6 +49,7 @@
     <PackageReference Include="HandyControl" Version="3.2.0" />
     <PackageReference Include="MvvmLight" Version="5.4.1.1" />
     <PackageReference Include="MvvmLightLibsStd10" Version="5.4.1.1" />
+    <PackageReference Include="SmartSoft.common" Version="1.0.9" />
     <PackageReference Include="SqlSugarCore" Version="5.0.3.2" />
   </ItemGroup>
 

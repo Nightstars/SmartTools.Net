@@ -46,6 +46,23 @@ namespace $Rootnamespace$.Services
         }
         #endregion
 
+        #region GetById
+        /// <summary>
+        /// Get By Id
+        /// </summary>
+        /// <param name="currSearchDto"></param>
+        /// <returns></returns>
+        public CommonResult<List<$ModelName$>> GetById($ModelName$SearchDto searchDto)
+        {
+            int total = 0;
+            var list = Db.Queryable<$ModelName$>()
+                .AS($"{CoreDbTables.Db((DBType)Enum.Parse(typeof(DBType), _configuration["ConnectionConfig:DBType"]), CoreDbTables.$Dadabase$)}{CoreDbTables.$Dbtable$}")
+                .Where(x=>x.PK_SEQ.Equals(searchDto.PK_SEQ))
+                .ToList();
+
+            return new CommonResult<List<$ModelName$>>() { Code = list.Any() ? "0X00" : "0X01", Data = list, Message = list.Any() ? $"{total}" : null, Success = list.Any() };
+        }
+        #endregion
 
     }
 }

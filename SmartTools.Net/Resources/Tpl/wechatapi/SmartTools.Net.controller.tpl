@@ -41,5 +41,18 @@ namespace $Rootnamespace$.Controllers
             return Json(_service.GetAll(searchDto));
         }
         #endregion
+
+        #region bet by id
+        /// <summary>
+        /// get by id
+        /// </summary>
+        /// <param name="PK_SEQ"></param>
+        /// <returns></returns>
+        [HttpGet("{PK_SEQ}")]
+        public IActionResult Get(int PK_SEQ)
+        {
+            return Json(_service.GetById(new $ModelName$SearchDto { PK_SEQ = PK_SEQ }));
+        }
+        #endregion
     }
 }

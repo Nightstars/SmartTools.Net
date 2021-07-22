@@ -4,6 +4,7 @@
  *
  */
 
+using System;
 using idp_wechat.Models;
 using System.ComponentModel.DataAnnotations;
 

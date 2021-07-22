@@ -1,4 +1,5 @@
-﻿using SmartTools.Net.Models;
+﻿using SmartSoft.common.Utils.solution;
+using SmartTools.Net.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -54,9 +55,9 @@ namespace SmartTools.Net.ViewModel
         }
         #endregion
 
-        #region 数据库
+        #region 命名空间
         /// <summary>
-        /// 数据库
+        /// 命名空间
         /// </summary>
         public String _rootnamespace = "";
 
@@ -80,5 +81,109 @@ namespace SmartTools.Net.ViewModel
         }
         #endregion
 
+        #region 解决方案地址
+        /// <summary>
+        /// 解决方案地址
+        /// </summary>
+        public String slnfileaddr = "";
+
+        public string Slnfileaddr
+        {
+            get { return slnfileaddr; }
+            set { slnfileaddr = value; Notify(); }
+        }
+        #endregion
+
+        #region 项目列表
+        /// <summary>
+        /// 项目列表
+        /// </summary>
+        public List<SolutionInfo> projectlist { get; set; }
+
+        public List<SolutionInfo> Projectlist
+        {
+            get { return projectlist; }
+            set { projectlist = value; Notify(); }
+        }
+        #endregion
+
+        #region 项目
+        /// <summary>
+        /// 数据库
+        /// </summary>
+        public String project = "";
+
+        public string Project
+        {
+            get { return project; }
+            set { project = value; Notify(); }
+        }
+        #endregion
+
+        #region 项目区域
+        /// <summary>
+        /// 项目区域
+        /// </summary>
+        public String projectArea = "";
+
+        public string ProjectArea
+        {
+            get { return projectArea; }
+            set { projectArea = value; Notify(); }
+        }
+        #endregion
+
+        #region 项目地址
+        /// <summary>
+        /// 项目地址
+        /// </summary>
+        public String projectPath  { get;set; }
+        #endregion
+
+        #region 区域列表
+        /// <summary>
+        /// 项目列表
+        /// </summary>
+        public List<string> arealist { get; set; }
+
+        public List<string> Arealist
+        {
+            get { return arealist; }
+            set { arealist = value; Notify(); }
+        }
+        #endregion
+
+        #region 生成目录
+        /// <summary>
+        /// 生成目录
+        /// </summary>
+        public String buildpath { get; set; }
+        #endregion
+
+        #region 业务逐渐
+        /// <summary>
+        /// 业务主键
+        /// </summary>
+        public String primarykey = "";
+
+        public string Primarykey
+        {
+            get { return primarykey; }
+            set { primarykey = value; Notify(); }
+        }
+        #endregion
+
+        #region 数据库字段列表
+        /// <summary>
+        /// 项目列表
+        /// </summary>
+        public List<DbTableInfo> dbTableInfos { get; set; }
+
+        public List<DbTableInfo> DbTableInfos
+        {
+            get { return dbTableInfos; }
+            set { dbTableInfos = value; Notify(); }
+        }
+        #endregion
     }
 }

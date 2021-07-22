@@ -14,6 +14,8 @@
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="80"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
@@ -63,16 +65,104 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Metro:AduFormLable Title="{DynamicResource database}" Margin="0,10,0,0" VerticalAlignment="Center" HorizontalAlignment="Stretch">
-                <Metro:AduComboBox Name="databases" SelectedValue="{Binding Database}" HorizontalAlignment="Stretch"
-                                   VerticalAlignment="Center" Width="180" SelectionChanged="databases_Selected"/>
-            </Metro:AduFormLable>
-            <Metro:AduFormLable Title="{DynamicResource dbtable}" Margin="0,10,0,0" VerticalAlignment="Center" Grid.Column="1">
-                <Metro:AduComboBox Name="dbtables" SelectedValue="{Binding DbTable}" VerticalAlignment="Center" Width="180"/>
-            </Metro:AduFormLable>
+
+            <Metro:AduFormLable Title="{DynamicResource database}" Margin="40,10,10,0" HorizontalAlignment="Left"/>
+
+            <Metro:AduComboBox Name="databases" SelectedValue="{Binding Database}" HorizontalAlignment="Stretch"
+                                Margin="110,10,10,0"
+                                VerticalAlignment="Center" SelectionChanged="databases_Selected" />
+
+            <Metro:AduFormLable Title="{DynamicResource dbtable}" Margin="40,10,10,0" HorizontalAlignment="Left" Grid.Column="1"/>
+
+            <Metro:AduComboBox Name="dbtables" SelectedValue="{Binding DbTable}" VerticalAlignment="Center" HorizontalAlignment="Stretch"
+                               Margin="110,10,10,0" Grid.Column="1" SelectionChanged="dbtables_SelectionChanged"/>
         </Grid>
 
         <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Metro:AduFormLable Title="{DynamicResource primarykey}" Margin="40,10,10,0" HorizontalAlignment="Left"/>
+
+            <Metro:AduComboBox Name="primarykey" SelectedValue="{Binding Primarykey}" HorizontalAlignment="Stretch" ItemsSource="{Binding DbTableInfos}"
+                                   SelectedValuePath="columnName" DisplayMemberPath="columnName" Margin="110,10,10,0"
+                                   VerticalAlignment="Center"/>
+
+            <Metro:AduFormLable Title="{DynamicResource searchParam}" Margin="40,10,10,0" HorizontalAlignment="Left" Grid.Column="1"/>
+
+            <hc:CheckComboBox ItemsSource="{Binding DbTableInfos}" HorizontalAlignment="Stretch" hc:InfoElement.TitleWidth="140" Height="35"
+                              Grid.Column="1" SelectedValuePath="columnName" DisplayMemberPath="columnName" MaxHeight="35"
+                              VerticalAlignment="Top" VerticalContentAlignment="Top"
+                              Style="{StaticResource CheckComboBoxBaseStyle}" Margin="110,10,10,0"/>
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition ></ColumnDefinition>
+                <ColumnDefinition Width="120"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Metro:AduFormLable Title="{DynamicResource slnfile}" Margin="40,10,10,0" HorizontalAlignment="Left"/>
+
+            <Metro:MetroTextBox
+                Margin="110,10,10,0"
+                InputHint="{DynamicResource slnfileHint}"
+                PopupHint="{DynamicResource slnfileHint}"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Center"
+                Name="slnfileaddr"
+                Text="{Binding Slnfileaddr}"
+                Grid.Row="0"
+                IsEnabled="False"
+
+            />
+
+            <Button
+                Name="selectfile"
+                Margin="0,10,10,0"
+                Content="{DynamicResource selectfile}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Style="{StaticResource ButtonPrimary}"
+                Grid.Column="1"
+                Click="selectfile_Click"
+                Width="100"
+                hc:BorderElement.CornerRadius="15"
+                />
+
+        </Grid>
+
+        <Grid Grid.Row="4">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Metro:AduFormLable Title="{DynamicResource project}" Margin="40,10,10,0" HorizontalAlignment="Left"/>
+
+            <Metro:AduComboBox Name="project" SelectedValue="{Binding Project}" HorizontalAlignment="Stretch" ItemsSource="{Binding Projectlist}"
+                                   SelectedValuePath="projName" DisplayMemberPath="projName" Margin="110,10,10,0"
+                                   VerticalAlignment="Center" SelectionChanged="project_SelectionChanged"/>
+
+            <Metro:AduFormLable Title="{DynamicResource projectarea}" Margin="40,10,10,0" HorizontalAlignment="Left" Grid.Column="1"/>
+
+            <Metro:AduComboBox Name="projectArea" SelectedValue="{Binding ProjectArea}" VerticalAlignment="Center"
+                                   Margin="110,10,10,0" Grid.Column="1"
+                                   HorizontalAlignment="Stretch" ItemsSource="{Binding Arealist}" SelectionChanged="projectArea_SelectionChanged"/>
+        </Grid>
+
+        <Grid Grid.Row="5">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
@@ -94,7 +184,7 @@
             />
         </Grid>
 
-        <Grid Grid.Row="3">
+        <Grid Grid.Row="6">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>

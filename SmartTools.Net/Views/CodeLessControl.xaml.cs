@@ -12,6 +12,10 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Runtime.Versioning;
+using SmartSoft.common.Utils.solution;
+using System.Linq;
+using System.IO;
+using System.Collections.Generic;
 
 namespace SmartTools.Net.Views
 {
@@ -78,6 +82,8 @@ namespace SmartTools.Net.Views
                 return;
             }
 
+            dbtables.ItemsSource = new List<DbTable>();
+
             try
             {
                 if (!string.IsNullOrWhiteSpace(codeLessVM.database))
@@ -90,6 +96,8 @@ namespace SmartTools.Net.Views
                 {
                     dbtables.SelectedIndex = -1;
                     dbtables.ItemsSource = null;
+                    primarykey.SelectedIndex = -1;
+                    primarykey.ItemsSource = null;
                 }
             }
             catch (Exception ex)
@@ -135,21 +143,25 @@ namespace SmartTools.Net.Views
 
             try
             {
-                var tbinfo = new CodeLessService(codeLessVM.connectString).GetDbTableInfo(codeLessVM.database,codeLessVM.dbTable);
-                new CodeBuilder(tbinfo,
+                //var tbinfo = new CodeLessService(codeLessVM.connectString).GetDbTableInfo(codeLessVM.database,codeLessVM.dbTable);
+                new CodeBuilder(codeLessVM.DbTableInfos,
                     codeLessVM._rootnamespace,
                     $"Wechat{FiledUtil.GetModelName(codeLessVM.dbTable)}",
                     codeLessVM.database,
-                    codeLessVM.dbTable)
+                    codeLessVM.dbTable,
+                    codeLessVM.buildpath,
+                    "wechat",
+                    "项目")
                 .BuildModel()
                 .BuildSearchModel()
                 .BuildService()
                 .BuildController();
-                var result = HandyControl.Controls.MessageBox.Show("生成成功,是否打开输出文件夹？", "温馨提示", MessageBoxButton.OKCancel, MessageBoxImage.Question, MessageBoxResult.OK);
-                if (result == MessageBoxResult.OK)
-                {
-                    Process.Start("explorer.exe", $@"{AppDomain.CurrentDomain.BaseDirectory}Oupput\");
-                }
+                HandyControl.Controls.MessageBox.Success("生成成功");
+                //var result = HandyControl.Controls.MessageBox.Show("生成成功,是否打开输出文件夹？", "温馨提示", MessageBoxButton.OKCancel, MessageBoxImage.Question, MessageBoxResult.OK);
+                //if (result == MessageBoxResult.OK)
+                //{
+                //    Process.Start("explorer.exe", $@"{AppDomain.CurrentDomain.BaseDirectory}Oupput\");
+                //}
             }
             catch (Exception ex)
             {
@@ -159,5 +171,87 @@ namespace SmartTools.Net.Views
         }
         #endregion
 
+        #region seelect sln file
+        /// <summary>
+        /// selectfile_Click
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void selectfile_Click(object sender, RoutedEventArgs e)
+        {
+            var openFileDialog = new Microsoft.Win32.OpenFileDialog()
+            {
+                Filter = "Solution Files (*.sln)|*.sln",
+                Title = "选择解决方案"
+
+            };
+            var result = openFileDialog.ShowDialog();
+            if (result == true)
+            {
+                codeLessVM.Slnfileaddr = openFileDialog.FileName;
+                codeLessVM.Projectlist = new SolutionUtil(codeLessVM.slnfileaddr).SlnParse();
+                codeLessVM.Arealist = new List<string>();
+            }
+            else
+            {
+                HandyControl.Controls.MessageBox.Error("未选择任何解决方案!");
+            }
+        }
+        #endregion
+
+        #region project_SelectionChanged
+        /// <summary>
+        /// project_SelectionChanged
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void project_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (codeLessVM.project != null)
+            {
+                var path = codeLessVM.projectlist.Where(x => x.projName == codeLessVM.project).FirstOrDefault().projFullName;
+                codeLessVM.projectPath = $"{path.Substring(0, path.LastIndexOf("/"))}/Areas";
+                codeLessVM.Arealist = new List<string>();
+                if (Directory.Exists(@$"{codeLessVM.slnfileaddr.Substring(0, codeLessVM.slnfileaddr.LastIndexOf("\\"))}\{codeLessVM.projectPath}"))
+                {
+                    DirectoryInfo directoryInfo = new DirectoryInfo(@$"{codeLessVM.slnfileaddr.Substring(0, codeLessVM.slnfileaddr.LastIndexOf("\\"))}\{codeLessVM.projectPath}");
+                    var files = directoryInfo.GetDirectories();
+                    List<string> areas = new List<string>();
+                    foreach (var file in files)
+                    {
+                        areas.Add(file.Name);
+                    }
+                    codeLessVM.Arealist = areas;
+                }
+            }
+        }
+        #endregion
+
+        #region projectArea_SelectionChanged
+        /// <summary>
+        /// projectArea_SelectionChanged
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void projectArea_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Directory.Exists(@$"{codeLessVM.slnfileaddr.Substring(0, codeLessVM.slnfileaddr.LastIndexOf("\\"))}\{codeLessVM.projectPath}"))
+            {
+                codeLessVM.buildpath = @$"{codeLessVM.slnfileaddr.Substring(0, codeLessVM.slnfileaddr.LastIndexOf("\\"))}\{codeLessVM.projectPath}\{codeLessVM.projectArea}";
+                var path = codeLessVM.projectlist.Where(x => x.projName == codeLessVM.project).FirstOrDefault().projName;
+                codeLessVM.Rootnamespace = $"{path.Substring(0, path.LastIndexOf("."))}.Areas.{codeLessVM.projectArea}";
+            }
+        }
+        #endregion
+
+        #region dbtables_SelectionChanged
+        private void dbtables_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(codeLessVM.dbTable))
+                codeLessVM.DbTableInfos = new CodeLessService(codeLessVM.connectString).GetDbTableInfo(codeLessVM.database, codeLessVM.dbTable);
+            else
+                codeLessVM.DbTableInfos = new List<DbTableInfo>();
+        }
+        #endregion
     }
 }
