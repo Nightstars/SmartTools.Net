@@ -289,7 +289,7 @@ namespace SmartTools.Net.Utils
 			text = text.Replace("$Rootnamespace$", _rootnamespace);
 			text = text.Replace("$ModelName$", _modelName);
 			text = text.Replace("$PK$", _primarykey);
-			text = text.Replace("$PKType$", pktype);
+			text = text.Replace("$PKType$", FiledUtil.GetFiledType(pktype));
 			text = text.Replace("$GenDate$", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
 			if (_outputtype == "项目")
 			{
