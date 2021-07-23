@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartSoft.common.Utils.update;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,9 @@ namespace SmartTools.Net
     /// </summary>
     public partial class App : Application
     {
+        private void Application_Startup(object sender, StartupEventArgs e)
+        {
+            new UpdateUtil().checckUpdate("./SmartTools.Net", "http://192.168.2.114:10002");
+        }
     }
 }
