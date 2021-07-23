@@ -185,5 +185,12 @@ namespace SmartTools.Net.ViewModel
             set { dbTableInfos = value; Notify(); }
         }
         #endregion
+
+        #region 查询字段
+        /// <summary>
+        /// 查询字段
+        /// </summary>
+        public List<DbTableInfo> searchParams { get; set; }
+        #endregion
     }
 }

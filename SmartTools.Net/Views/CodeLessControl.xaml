@@ -97,8 +97,8 @@
 
             <hc:CheckComboBox ItemsSource="{Binding DbTableInfos}" HorizontalAlignment="Stretch" hc:InfoElement.TitleWidth="140" Height="35"
                               Grid.Column="1" SelectedValuePath="columnName" DisplayMemberPath="columnName" MaxHeight="35"
-                              VerticalAlignment="Top" VerticalContentAlignment="Top"
-                              Style="{StaticResource CheckComboBoxBaseStyle}" Margin="110,10,10,0"/>
+                              VerticalAlignment="Top" VerticalContentAlignment="Top" Name="searchparam"
+                              Style="{StaticResource CheckComboBoxBaseStyle}" Margin="110,10,10,0" SelectionChanged="CheckComboBox_SelectionChanged"/>
         </Grid>
 
         <Grid Grid.Row="3">

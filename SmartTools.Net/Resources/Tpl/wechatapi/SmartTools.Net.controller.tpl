@@ -46,12 +46,12 @@ namespace $Rootnamespace$.Controllers
         /// <summary>
         /// get by id
         /// </summary>
-        /// <param name="PK_SEQ"></param>
+        /// <param name="$PK$"></param>
         /// <returns></returns>
-        [HttpGet("{PK_SEQ}")]
-        public IActionResult Get(int PK_SEQ)
+        [HttpGet("{$PK$}")]
+        public IActionResult Get($PKType$ $PK$)
         {
-            return Json(_service.GetById(new $ModelName$SearchDto { PK_SEQ = PK_SEQ }));
+            return Json(_service.GetById(new $ModelName$SearchDto { $PK$ = $PK$ }));
         }
         #endregion
     }

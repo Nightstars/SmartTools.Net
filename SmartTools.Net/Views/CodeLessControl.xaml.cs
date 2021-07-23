@@ -134,12 +134,20 @@ namespace SmartTools.Net.Views
                 return;
             }
 
+            if (string.IsNullOrWhiteSpace(codeLessVM.primarykey))
+            {
+                HandyControl.Controls.MessageBox.Error("请选择业务主键!");
+                logading.Close();
+                return;
+            }
+
             if (string.IsNullOrWhiteSpace(codeLessVM._rootnamespace))
             {
                 HandyControl.Controls.MessageBox.Error("请填写命名空间!");
                 logading.Close();
                 return;
             }
+
 
             try
             {
@@ -151,11 +159,14 @@ namespace SmartTools.Net.Views
                     codeLessVM.dbTable,
                     codeLessVM.buildpath,
                     "wechat",
-                    "项目")
+                    "项目",
+                    codeLessVM.primarykey,
+                    codeLessVM.searchParams)
                 .BuildModel()
                 .BuildSearchModel()
                 .BuildService()
-                .BuildController();
+                .BuildController()
+                .BuildDbinfo();
                 HandyControl.Controls.MessageBox.Success("生成成功");
                 //var result = HandyControl.Controls.MessageBox.Show("生成成功,是否打开输出文件夹？", "温馨提示", MessageBoxButton.OKCancel, MessageBoxImage.Question, MessageBoxResult.OK);
                 //if (result == MessageBoxResult.OK)
@@ -167,7 +178,10 @@ namespace SmartTools.Net.Views
             {
                 HandyControl.Controls.MessageBox.Error(ex.Message);
             }
-            logading.Close();
+            finally
+            {
+                logading.Close();
+            }
         }
         #endregion
 
@@ -237,7 +251,7 @@ namespace SmartTools.Net.Views
         {
             if (Directory.Exists(@$"{codeLessVM.slnfileaddr.Substring(0, codeLessVM.slnfileaddr.LastIndexOf("\\"))}\{codeLessVM.projectPath}"))
             {
-                codeLessVM.buildpath = @$"{codeLessVM.slnfileaddr.Substring(0, codeLessVM.slnfileaddr.LastIndexOf("\\"))}\{codeLessVM.projectPath}\{codeLessVM.projectArea}";
+                codeLessVM.buildpath = @$"{codeLessVM.slnfileaddr.Substring(0, codeLessVM.slnfileaddr.LastIndexOf("\\"))}\{codeLessVM.projectPath}\{codeLessVM.projectArea}".Replace("\\","/");
                 var path = codeLessVM.projectlist.Where(x => x.projName == codeLessVM.project).FirstOrDefault().projName;
                 codeLessVM.Rootnamespace = $"{path.Substring(0, path.LastIndexOf("."))}.Areas.{codeLessVM.projectArea}";
             }
@@ -251,6 +265,18 @@ namespace SmartTools.Net.Views
                 codeLessVM.DbTableInfos = new CodeLessService(codeLessVM.connectString).GetDbTableInfo(codeLessVM.database, codeLessVM.dbTable);
             else
                 codeLessVM.DbTableInfos = new List<DbTableInfo>();
+        }
+        #endregion
+
+        #region CheckComboBox_SelectionChanged
+        /// <summary>
+        /// CheckComboBox_SelectionChanged
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CheckComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            codeLessVM.searchParams = searchparam.SelectedItems.Cast<DbTableInfo>().ToList();
         }
         #endregion
     }
