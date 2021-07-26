@@ -3,8 +3,6 @@ echo copy new file
 Xcopy .\build\Release .\update /E/H/C/I
 echo delete ignore file
 del .\update\SmartTools.Net.runtimeconfig.dev.json
-del .\update\Update.dll
-del .\update\Update.exe
 rmdir /s/q .\update\ca-ES
 rmdir /s/q .\update\en
 rmdir /s/q .\update\fa

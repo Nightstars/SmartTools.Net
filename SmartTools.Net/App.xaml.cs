@@ -16,7 +16,16 @@ namespace SmartTools.Net
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            new UpdateUtil().checckUpdate("./SmartTools.Net", "http://192.168.2.114:10002");
+            try
+            {
+                new UpdateUtil().checckUpdate("./SmartTools.Net", "http://192.168.2.114:10002");
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.Message);
+            }
+
         }
     }
 }

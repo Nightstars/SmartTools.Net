@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 /update
 /update.zip
+/build

@@ -11,7 +11,6 @@
     <Border BorderBrush="{StaticResource DefaultBorderBrush}" BorderThickness="1">
         <Metro:AduNavigationPanel x:Name="navigationPanel" Grid.Row="1"
                                    Foreground="{StaticResource DefaultBrush}"
-
                                 IndicatorMargin="0" IndicatorHorizontalAlignment="Center"
                                 IndicatorSelectedIndex="0" IndicatorPlacement="Left" BorderThickness="0,0,0,0">
             <Metro:MetroScrollViewer HorizontalScrollBarVisibility="Disabled">
