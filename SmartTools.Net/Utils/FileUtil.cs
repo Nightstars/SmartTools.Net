@@ -27,14 +27,10 @@ namespace SmartTools.Net.Utils
 			string result;
 			//using StreamReader streamReader = new StreamReader(path);
 			//result = streamReader.ReadToEnd();
-
-			using (Stream manifestResourceStream = Assembly.GetExecutingAssembly().GetManifestResourceStream($"{ResourcesPath}{path}"))
-			{
-				using (StreamReader streamReader = new StreamReader(manifestResourceStream))
-				{
+			using Stream manifestResourceStream = Assembly.GetExecutingAssembly().GetManifestResourceStream($"{ResourcesPath}{path}");
+				using StreamReader streamReader = new StreamReader(manifestResourceStream);
 					result = streamReader.ReadToEnd();
-				}
-			}
+
 			return result;
 		}
 		#endregion

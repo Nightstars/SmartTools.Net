@@ -33,7 +33,7 @@ namespace SmartTools.Net.ViewModel
         /// 数据库连接字符串
         /// </summary>
         //public String connectString= "Database=CMS;Server=127.0.0.1,6666;User ID = sa; Password = Ihavenoidea@0;";
-        public String connectString= "Database=CMS;Server=192.168.0.151,61440;User ID = sa; Password = Dbwork2021;";
+        public String connectString= "Database=CMS;Server=192.168.2.52,61440;User ID = dbwork_v6; Password = dbwork2021.;";
 
         public string ConnectionString
         {
@@ -191,6 +191,58 @@ namespace SmartTools.Net.ViewModel
         /// 查询字段
         /// </summary>
         public List<DbTableInfo> searchParams { get; set; }
+        #endregion
+
+        #region 项目类型列表
+        /// <summary>
+        /// 项目列表
+        /// </summary>
+        public List<string> projecttypelist { get; set; }
+
+        public List<string> Projecttypelist
+        {
+            get { return projecttypelist; }
+            set { projecttypelist = value; Notify(); }
+        }
+        #endregion
+
+        #region 项目类型
+        /// <summary>
+        /// 数据库
+        /// </summary>
+        public String projecttype = "";
+
+        public string Projecttype
+        {
+            get { return projecttype; }
+            set { projecttype = value; Notify(); }
+        }
+        #endregion
+
+        #region 输出类型列表
+        /// <summary>
+        /// 项目列表
+        /// </summary>
+        public List<string> outputtypelist { get; set; }
+
+        public List<string> Outputtypelist
+        {
+            get { return outputtypelist; }
+            set { outputtypelist = value; Notify(); }
+        }
+        #endregion
+
+        #region 输出类型
+        /// <summary>
+        /// 数据库
+        /// </summary>
+        public String outputtype = "";
+
+        public string Outputtype
+        {
+            get { return outputtype; }
+            set { outputtype = value; Notify(); }
+        }
         #endregion
     }
 }

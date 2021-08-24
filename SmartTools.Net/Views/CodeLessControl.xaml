@@ -16,6 +16,7 @@
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="80"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
@@ -152,13 +153,13 @@
             <Metro:AduFormLable Title="{DynamicResource project}" Margin="40,10,10,0" HorizontalAlignment="Left"/>
 
             <Metro:AduComboBox Name="project" SelectedValue="{Binding Project}" HorizontalAlignment="Stretch" ItemsSource="{Binding Projectlist}"
-                                   SelectedValuePath="projName" DisplayMemberPath="projName" Margin="110,10,10,0"
+                                   SelectedValuePath="projName" DisplayMemberPath="projName" Margin="110,10,10,0" SelectedIndex="0"
                                    VerticalAlignment="Center" SelectionChanged="project_SelectionChanged"/>
 
             <Metro:AduFormLable Title="{DynamicResource projectarea}" Margin="40,10,10,0" HorizontalAlignment="Left" Grid.Column="1"/>
 
             <Metro:AduComboBox Name="projectArea" SelectedValue="{Binding ProjectArea}" VerticalAlignment="Center"
-                                   Margin="110,10,10,0" Grid.Column="1"
+                                   Margin="110,10,10,0" Grid.Column="1" SelectedIndex="0"
                                    HorizontalAlignment="Stretch" ItemsSource="{Binding Arealist}" SelectionChanged="projectArea_SelectionChanged"/>
         </Grid>
 
@@ -185,6 +186,29 @@
         </Grid>
 
         <Grid Grid.Row="6">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Metro:AduFormLable Title="{DynamicResource projecttype}" Margin="40,-20,10,0" HorizontalAlignment="Left"/>
+
+            <Metro:AduComboBox Name="projecttype" SelectedValue="{Binding Projecttype}" HorizontalAlignment="Stretch"
+                                ItemsSource="{Binding Projecttypelist}" SelectedIndex="1"
+                                Margin="110,-20,10,0" VerticalAlignment="Center" />
+
+            <Metro:AduFormLable Title="{DynamicResource Outputtype}" Margin="40,-20,10,0" HorizontalAlignment="Left" Grid.Column="1"/>
+
+            <Metro:AduComboBox Name="outputtype" SelectedValue="{Binding Outputtype}" HorizontalAlignment="Stretch" Grid.Column="1"
+                                ItemsSource="{Binding Outputtypelist}" SelectedIndex="0"
+                                Margin="110,-20,10,0" VerticalAlignment="Center" />
+
+        </Grid>
+
+        <Grid Grid.Row="7">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>

@@ -40,6 +40,8 @@ namespace SmartTools.Net.Views
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             this.DataContext = codeLessVM;
+            codeLessVM.Projecttypelist = new List<string> { "wechat api", "cms" };
+            codeLessVM.Outputtypelist = new List<string> { "项目", "文件" };
             new ControlUtil().HideBoundingBox(this);
         }
         #endregion
@@ -148,31 +150,56 @@ namespace SmartTools.Net.Views
                 return;
             }
 
+            if (string.IsNullOrWhiteSpace(codeLessVM.projecttype))
+            {
+                HandyControl.Controls.MessageBox.Error("请选择项目类型!");
+                logading.Close();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(codeLessVM.outputtype))
+            {
+                HandyControl.Controls.MessageBox.Error("请选择生成类型!");
+                logading.Close();
+                return;
+            }
+
 
             try
             {
-                //var tbinfo = new CodeLessService(codeLessVM.connectString).GetDbTableInfo(codeLessVM.database,codeLessVM.dbTable);
-                new CodeBuilder(codeLessVM.DbTableInfos,
+                //生成代码
+                new CodeBuilder
+                (
+                    codeLessVM.DbTableInfos,
                     codeLessVM._rootnamespace,
                     $"Wechat{FiledUtil.GetModelName(codeLessVM.dbTable)}",
                     codeLessVM.database,
                     codeLessVM.dbTable,
                     codeLessVM.buildpath,
-                    "wechat",
-                    "项目",
+                    codeLessVM.projecttype,
+                    codeLessVM.outputtype,
                     codeLessVM.primarykey,
-                    codeLessVM.searchParams)
+                    codeLessVM.searchParams,
+                    codeLessVM.projectArea
+                )
                 .BuildModel()
                 .BuildSearchModel()
                 .BuildService()
                 .BuildController()
+                .BuildViews()
                 .BuildDbinfo();
-                HandyControl.Controls.MessageBox.Success("生成成功");
-                //var result = HandyControl.Controls.MessageBox.Show("生成成功,是否打开输出文件夹？", "温馨提示", MessageBoxButton.OKCancel, MessageBoxImage.Question, MessageBoxResult.OK);
-                //if (result == MessageBoxResult.OK)
-                //{
-                //    Process.Start("explorer.exe", $@"{AppDomain.CurrentDomain.BaseDirectory}Oupput\");
-                //}
+
+                //show result
+                if(codeLessVM.outputtype == "项目")
+                    HandyControl.Controls.MessageBox.Success("生成成功");
+                else
+                {
+                    var result = HandyControl.Controls.MessageBox.Show("生成成功,是否打开输出文件夹？", "温馨提示", MessageBoxButton.OKCancel, MessageBoxImage.Question, MessageBoxResult.OK);
+                    if (result == MessageBoxResult.OK)
+                    {
+                        Process.Start("explorer.exe", $@"{AppDomain.CurrentDomain.BaseDirectory}Oupput\");
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -202,9 +229,12 @@ namespace SmartTools.Net.Views
             var result = openFileDialog.ShowDialog();
             if (result == true)
             {
+                codeLessVM.Arealist = new List<string>();
+                codeLessVM.Rootnamespace = "";
                 codeLessVM.Slnfileaddr = openFileDialog.FileName;
                 codeLessVM.Projectlist = new SolutionUtil(codeLessVM.slnfileaddr).SlnParse();
-                codeLessVM.Arealist = new List<string>();
+                //codeLessVM.Project = codeLessVM.Projectlist.First().projName;
+
             }
             else
             {
@@ -236,6 +266,7 @@ namespace SmartTools.Net.Views
                         areas.Add(file.Name);
                     }
                     codeLessVM.Arealist = areas;
+
                 }
             }
         }

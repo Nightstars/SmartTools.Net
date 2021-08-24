@@ -11,7 +11,7 @@
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
     <Deterministic>false</Deterministic>
-    <DebugType>none</DebugType>
+    <DebugType>full</DebugType>
     <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
     <ApplicationIcon>micon.ico</ApplicationIcon>
     <BaseOutputPath>..\build\</BaseOutputPath>
@@ -30,6 +30,14 @@
     <None Remove="Resources\icon\icon.png" />
     <None Remove="Resources\icon\micon.ico" />
     <None Remove="Resources\imgs\bg.png" />
+    <None Remove="Resources\Tpl\cms\SmartTools.Net.controller.tpl" />
+    <None Remove="Resources\Tpl\cms\SmartTools.Net.model.tpl" />
+    <None Remove="Resources\Tpl\cms\SmartTools.Net.searchmodel.tpl" />
+    <None Remove="Resources\Tpl\cms\SmartTools.Net.service.tpl" />
+    <None Remove="Resources\Tpl\cms\SmartTools.Net.Views.create.tpl" />
+    <None Remove="Resources\Tpl\cms\SmartTools.Net.Views.details.tpl" />
+    <None Remove="Resources\Tpl\cms\SmartTools.Net.Views.edit.tpl" />
+    <None Remove="Resources\Tpl\cms\SmartTools.Net.Views.Index.tpl" />
     <None Remove="Resources\Tpl\wechatapi\SmartTools.Net.controller.tpl" />
     <None Remove="Resources\Tpl\wechatapi\SmartTools.Net.model.tpl" />
     <None Remove="Resources\Tpl\wechatapi\SmartTools.Net.searchmodel.tpl" />
@@ -40,6 +48,14 @@
     <EmbeddedResource Include="Resources\icon\icon-white.png" />
     <EmbeddedResource Include="Resources\icon\icon.png" />
     <EmbeddedResource Include="Resources\imgs\bg.png" />
+    <EmbeddedResource Include="Resources\Tpl\cms\SmartTools.Net.Views.details.tpl" />
+    <EmbeddedResource Include="Resources\Tpl\cms\SmartTools.Net.Views.edit.tpl" />
+    <EmbeddedResource Include="Resources\Tpl\cms\SmartTools.Net.Views.create.tpl" />
+    <EmbeddedResource Include="Resources\Tpl\cms\SmartTools.Net.Views.Index.tpl" />
+    <EmbeddedResource Include="Resources\Tpl\cms\SmartTools.Net.controller.tpl" />
+    <EmbeddedResource Include="Resources\Tpl\cms\SmartTools.Net.model.tpl" />
+    <EmbeddedResource Include="Resources\Tpl\cms\SmartTools.Net.searchmodel.tpl" />
+    <EmbeddedResource Include="Resources\Tpl\cms\SmartTools.Net.service.tpl" />
     <EmbeddedResource Include="Resources\Tpl\wechatapi\SmartTools.Net.controller.tpl" />
     <EmbeddedResource Include="Resources\Tpl\wechatapi\SmartTools.Net.service.tpl" />
     <EmbeddedResource Include="Resources\Tpl\wechatapi\SmartTools.Net.searchmodel.tpl" />

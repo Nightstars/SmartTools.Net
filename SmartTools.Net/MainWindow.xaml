@@ -6,8 +6,8 @@
     xmlns:AduOpenLink="clr-namespace:AduSkin.Interactivity;assembly=AduSkin"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="SmartTools .Net" MinWidth="800" MinHeight="550"
-    Width="800" Height="550"
+    Title="SmartTools .Net" MinWidth="1080" MinHeight="720"
+    Width="1080" Height="720"
     d:DesignHeight="1200" d:DesignWidth="1600"
     BorderThickness="0"
     Background="#FFF" mc:Ignorable="d"
@@ -29,16 +29,6 @@
                     <ContentControl Content="{Binding Mine}"/>
                 </Border>
             </Metro:AduTabItem>
-            <!--<Metro:AduTabItem Header="关于AduSkin">
-                <Border BorderBrush="{StaticResource DefaultBorderBrush}" BorderThickness="0,0,0,0">
-                    <ContentControl Content="{Binding AduSkinAbout}"/>
-                </Border>
-            </Metro:AduTabItem>
-            <Metro:AduTabItem Header="技术支持">
-                <Border >
-                    <ContentControl Content="{Binding AduSkinSupport}"/>
-                </Border>
-            </Metro:AduTabItem>-->
         </Metro:AduTabControl>
     </Grid>
 </Metro:MetroWindow>

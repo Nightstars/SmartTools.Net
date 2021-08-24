@@ -17,4 +17,8 @@
     <system:String x:Key="projectarea">区域</system:String>
     <system:String x:Key="primarykey">业务主键</system:String>
     <system:String x:Key="searchParam">查询字段</system:String>
+    <system:String x:Key="projecttype">项目类型</system:String>
+    <system:String x:Key="Outputtype">生成类型</system:String>
+    <system:String x:Key="Welcome">亲爱的用户，欢迎你参与SmartTools.Net公测，公测阶段你将获得SmartTols.Net的完整功能体验！
+        SmartTools.Net是SmartTools（长期致力于为开发者构建不限于C、C++、Go、Rust、C#、Java、SpringBoot、PHP、Android、小程序、Vue、React,Angular的免费版及专业版辅助工具）的Dotnet实现。</system:String>
 </ResourceDictionary>
