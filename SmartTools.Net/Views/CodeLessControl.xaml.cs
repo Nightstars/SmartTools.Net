@@ -136,7 +136,7 @@ namespace SmartTools.Net.Views
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(codeLessVM.primarykey))
+            if (string.IsNullOrWhiteSpace(codeLessVM.primarykey) && codeLessVM.projecttype == "wechat api")
             {
                 HandyControl.Controls.MessageBox.Error("请选择业务主键!");
                 logading.Close();
@@ -200,6 +200,7 @@ namespace SmartTools.Net.Views
                         Process.Start("explorer.exe", $@"{AppDomain.CurrentDomain.BaseDirectory}Oupput\");
                     }
                 }
+                logading.Close();
             }
             catch (Exception ex)
             {

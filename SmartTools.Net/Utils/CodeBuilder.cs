@@ -500,7 +500,7 @@ namespace SmartTools.Net.Utils
 			{
 				list = _list;
 			}
-			if (!list.Exists(x => x.columnName == _primarykey))
+			if (!list.Exists(x => x.columnName == _primarykey) && !string.IsNullOrWhiteSpace(_primarykey))
 			{
 				list.Add(_list.Find(x => x.columnName == _primarykey));
 			}
