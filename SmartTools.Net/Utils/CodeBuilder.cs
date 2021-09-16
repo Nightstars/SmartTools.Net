@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Documents;
+using System.Xml.Linq;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace SmartTools.Net.Utils
 {
@@ -71,7 +73,23 @@ namespace SmartTools.Net.Utils
 		/// </summary>
 		private string _area;
 
-		public CodeBuilder(List<DbTableInfo> ls, string rootnamespace, string modelName,string database,string tbname,string buildpath,string projtype,string outputtype,string primarykey, List<DbTableInfo> searchls,string area)
+		/// <summary>
+		/// XML路径
+		/// </summary>
+		private string _xmlpath;
+
+		public CodeBuilder(List<DbTableInfo> ls,
+			string rootnamespace,
+			string modelName,
+			string database,
+			string tbname,
+			string buildpath,
+			string projtype,
+			string outputtype,
+			string primarykey,
+			List<DbTableInfo> searchls,
+			string area,
+			string xmlpath)
         {
 			_list = ls;
 			_rootnamespace = rootnamespace;
@@ -92,6 +110,7 @@ namespace SmartTools.Net.Utils
 			_primarykey = primarykey;
 			_searchlist = searchls;
 			_area = area;
+			_xmlpath = xmlpath;
 
 		}
         #endregion
@@ -126,6 +145,8 @@ namespace SmartTools.Net.Utils
 			}
 			else
 			{
+				BuildImXmlForCms();
+				BuildEpXmlForCms();
 				BuildSearchModelForCms();
 			}
 
@@ -490,7 +511,18 @@ namespace SmartTools.Net.Utils
 		/// </summary>
 		public void BuildSearchModelForCms()
 		{
-			StringBuilder stringBuilder = new StringBuilder();
+			StringBuilder stringBuilder = new StringBuilder()
+				.AppendLine($"public override string ImportXmlName => \"GenImport.xml\";")
+				.AppendLine()
+				.AppendLine($"public override string ImportXmlNode => \"{_modelName.ToUpper()}_IMPORT\";")
+				.AppendLine()
+				.AppendLine($"public override string ExportFileName => \"xxx\";")
+				.AppendLine()
+				.AppendLine($"public override string ExportXmlName => \"GenExport.xml\";")
+				.AppendLine()
+				.AppendLine($"public override string ExportXmlNode => \"{_modelName.ToUpper()}_EXPORT\";")
+				.AppendLine();
+
 			var list = new List<DbTableInfo>();
 			if (_searchlist.Any())
 			{
@@ -504,6 +536,7 @@ namespace SmartTools.Net.Utils
 			{
 				list.Add(_list.Find(x => x.columnName == _primarykey));
 			}
+
 			foreach (DbTableInfo item in list)
 			{
 				if (!FiledUtil.modelSkipFileds.Contains(item.columnName))
@@ -1081,6 +1114,126 @@ namespace SmartTools.Net.Utils
 					Directory.CreateDirectory($"./Oupput/Views/{_modelName}");
 				File.WriteAllText($"./Oupput/Views/{_modelName}/Detail.cshtml", text, Encoding.UTF8);
 			}
+		}
+		#endregion
+
+		#region build xml for import
+		/// <summary>
+		/// BuildXmlForCms
+		/// </summary>
+		public void BuildImXmlForCms()
+		{
+			//生成输出文件
+			if (_outputtype != "项目")
+			{
+				if (!Directory.Exists($"./Oupput/App_Data"))
+					Directory.CreateDirectory($"./Oupput/App_Data");
+				_xmlpath = "./Oupput/App_Data";
+			}
+
+			FileInfo fileInfo= new FileInfo($"{_xmlpath}/GenImport.xml");
+
+			if (!fileInfo.Exists)
+            {
+				XDocument document = new XDocument();
+				document.Declaration = new XDeclaration("1.0", "UTF-8", "");
+
+				XElement root = new XElement("root");
+
+				document.Add(root);
+
+				document.Save($"{_xmlpath}/GenImport.xml");//保存xml到文件
+			}
+
+
+			using FileStream fileStream = new FileStream($"{_xmlpath}/GenImport.xml", FileMode.Open, FileAccess.ReadWrite,FileShare.ReadWrite);
+
+			XElement xelement1 = XElement.Load(fileStream);
+			var temp = xelement1.Elements("table").Where( x => x.Attribute("name").Value == _modelName.ToUpper() + "_IMPORT");
+            foreach (XElement xelement2 in from m in xelement1.Elements("table")
+                                           where m.Attribute("name").Value == _modelName.ToUpper() + "_IMPORT"
+                                           select m)
+            {
+				xelement2.Remove();
+            }
+
+            XElement xelement3 = new XElement("table", new XAttribute("name", _modelName.ToUpper() + "_IMPORT"));
+			foreach (DbTableInfo item in _list)
+			{
+				item.columnDescription = item.columnDescription ?? item.columnName;
+				if (!FiledUtil.modelSkipFileds.Contains(item.columnName))
+				{
+					xelement3.Add(new XElement("column", new object[]
+					{
+						new XAttribute("field", FiledUtil.GetField(item.columnName)),
+						new XAttribute("view", item.columnDescription)
+					}));
+				}
+			}
+			xelement1.Add(xelement3);
+			fileStream.Position = 0L;
+			xelement1.Save(fileStream);
+
+		}
+		#endregion
+
+		#region build xml for export
+		/// <summary>
+		/// BuildXmlForCms
+		/// </summary>
+		public void BuildEpXmlForCms()
+		{
+			//生成输出文件
+			if (_outputtype != "项目")
+			{
+				if (!Directory.Exists($"./Oupput/App_Data"))
+					Directory.CreateDirectory($"./Oupput/App_Data");
+				_xmlpath = "./Oupput/App_Data";
+			}
+
+			FileInfo fileInfo = new FileInfo($"{_xmlpath}/GenExport.xml");
+
+			if (!fileInfo.Exists)
+			{
+				XDocument document = new XDocument();
+				document.Declaration = new XDeclaration("1.0", "UTF-8", "");
+
+				XElement root = new XElement("root");
+
+				document.Add(root);
+
+				document.Save($"{_xmlpath}/GenExport.xml");//保存xml到文件
+			}
+
+
+			using FileStream fileStream = new FileStream($"{_xmlpath}/GenExport.xml", FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);
+
+			XElement xelement1 = XElement.Load(fileStream);
+			var temp = xelement1.Elements("table").Where(x => x.Attribute("name").Value == _modelName.ToUpper() + "_EXPORT");
+			foreach (XElement xelement2 in from m in xelement1.Elements("table")
+										   where m.Attribute("name").Value == _modelName.ToUpper() + "_EXPORT"
+										   select m)
+			{
+				xelement2.Remove();
+			}
+
+			XElement xelement3 = new XElement("table", new XAttribute("name", _modelName.ToUpper() + "_EXPORT"));
+			foreach (DbTableInfo item in _list)
+			{
+				item.columnDescription = item.columnDescription ?? item.columnName;
+				if (!FiledUtil.modelSkipFileds.Contains(item.columnName))
+				{
+					xelement3.Add(new XElement("column", new object[]
+					{
+						new XAttribute("field", FiledUtil.GetField(item.columnName)),
+						new XAttribute("view", item.columnDescription)
+					}));
+				}
+			}
+			xelement1.Add(xelement3);
+			fileStream.Position = 0L;
+			xelement1.Save(fileStream);
+
 		}
 		#endregion
 	}

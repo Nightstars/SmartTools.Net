@@ -172,7 +172,7 @@ namespace SmartTools.Net.Views
                 (
                     codeLessVM.DbTableInfos,
                     codeLessVM._rootnamespace,
-                    $"Wechat{FiledUtil.GetModelName(codeLessVM.dbTable)}",
+                    $"{codeLessVM.project.Split(".").Reverse().Skip(1).Take(1).FirstOrDefault()}{FiledUtil.GetModelName(codeLessVM.dbTable)}",
                     codeLessVM.database,
                     codeLessVM.dbTable,
                     codeLessVM.buildpath,
@@ -180,7 +180,8 @@ namespace SmartTools.Net.Views
                     codeLessVM.outputtype,
                     codeLessVM.primarykey,
                     codeLessVM.searchParams,
-                    codeLessVM.projectArea
+                    codeLessVM.projectArea,
+                    codeLessVM.xmlpath
                 )
                 .BuildModel()
                 .BuildSearchModel()
@@ -197,14 +198,17 @@ namespace SmartTools.Net.Views
                     var result = HandyControl.Controls.MessageBox.Show("生成成功,是否打开输出文件夹？", "温馨提示", MessageBoxButton.OKCancel, MessageBoxImage.Question, MessageBoxResult.OK);
                     if (result == MessageBoxResult.OK)
                     {
+                        logading.Close();
                         Process.Start("explorer.exe", $@"{AppDomain.CurrentDomain.BaseDirectory}Oupput\");
                     }
+                    logading.Close();
                 }
                 logading.Close();
             }
             catch (Exception ex)
             {
                 HandyControl.Controls.MessageBox.Error(ex.Message);
+                logading.Close();
             }
             finally
             {
@@ -256,6 +260,7 @@ namespace SmartTools.Net.Views
             {
                 var path = codeLessVM.projectlist.Where(x => x.projName == codeLessVM.project).FirstOrDefault().projFullName;
                 codeLessVM.projectPath = $"{path.Substring(0, path.LastIndexOf("/"))}/Areas";
+                codeLessVM.xmlpath = $"{path.Substring(0, path.LastIndexOf("/"))}/App_Data";
                 codeLessVM.Arealist = new List<string>();
                 if (Directory.Exists(@$"{codeLessVM.slnfileaddr.Substring(0, codeLessVM.slnfileaddr.LastIndexOf("\\"))}\{codeLessVM.projectPath}"))
                 {

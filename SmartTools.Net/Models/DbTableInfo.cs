@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SqlSugar;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,5 +33,10 @@ namespace SmartTools.Net.Models
         /// 字段长度
         /// </summary>
         public int length { get; set; }
+
+        [SugarColumn(IsIgnore = true)]
+        public string displayName {
+            get { return $"{columnName}【{columnDescription}】"; }
+        }
     }
 }

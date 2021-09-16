@@ -140,6 +140,13 @@ namespace SmartTools.Net.ViewModel
         public String projectPath  { get;set; }
         #endregion
 
+        #region XML配置地址
+        /// <summary>
+        /// 项目地址
+        /// </summary>
+        public String xmlpath { get; set; }
+        #endregion
+
         #region 区域列表
         /// <summary>
         /// 项目列表
@@ -160,7 +167,7 @@ namespace SmartTools.Net.ViewModel
         public String buildpath { get; set; }
         #endregion
 
-        #region 业务逐渐
+        #region 业务主键
         /// <summary>
         /// 业务主键
         /// </summary>
