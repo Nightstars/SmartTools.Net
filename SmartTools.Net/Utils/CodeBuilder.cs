@@ -514,13 +514,13 @@ namespace SmartTools.Net.Utils
 			StringBuilder stringBuilder = new StringBuilder()
 				.AppendLine($"public override string ImportXmlName => \"GenImport.xml\";")
 				.AppendLine()
-				.AppendLine($"public override string ImportXmlNode => \"{_modelName.ToUpper()}_IMPORT\";")
+				.AppendLine($"		public override string ImportXmlNode => \"{_modelName.ToUpper()}_IMPORT\";")
 				.AppendLine()
-				.AppendLine($"public override string ExportFileName => \"xxx\";")
+				.AppendLine($"		public override string ExportFileName => \"xxx\";")
 				.AppendLine()
-				.AppendLine($"public override string ExportXmlName => \"GenExport.xml\";")
+				.AppendLine($"		public override string ExportXmlName => \"GenExport.xml\";")
 				.AppendLine()
-				.AppendLine($"public override string ExportXmlNode => \"{_modelName.ToUpper()}_EXPORT\";")
+				.AppendLine($"		public override string ExportXmlNode => \"{_modelName.ToUpper()}_EXPORT\";")
 				.AppendLine();
 
 			var list = new List<DbTableInfo>();
@@ -867,7 +867,7 @@ namespace SmartTools.Net.Utils
 						formArea.AppendLine($"				</div>");
 
 					}
-					formArea.AppendLine("			</div>");
+					formArea.AppendLine("			</div>").AppendLine();
 				}
 
 				//不足一行需占位
@@ -1064,7 +1064,7 @@ namespace SmartTools.Net.Utils
 						formArea.AppendLine($"				</div>");
 
 					}
-					formArea.AppendLine("			</div>");
+					formArea.AppendLine("			</div>").AppendLine();
 				}
 
 				//不足一行需占位

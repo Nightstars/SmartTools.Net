@@ -36,7 +36,7 @@ namespace SmartTools.Net.Models
 
         [SugarColumn(IsIgnore = true)]
         public string displayName {
-            get { return $"{columnName}【{columnDescription}】"; }
+            get { return $"{columnName} {columnDescription}"; }
         }
     }
 }
