@@ -78,6 +78,11 @@ namespace SmartTools.Net.Utils
 		/// </summary>
 		private string _xmlpath;
 
+		/// <summary>
+		/// 视图标题
+		/// </summary>
+		private string _viewtitle;
+
 		public CodeBuilder(List<DbTableInfo> ls,
 			string rootnamespace,
 			string modelName,
@@ -89,7 +94,8 @@ namespace SmartTools.Net.Utils
 			string primarykey,
 			List<DbTableInfo> searchls,
 			string area,
-			string xmlpath)
+			string xmlpath,
+			string viewtitle)
         {
 			_list = ls;
 			_rootnamespace = rootnamespace;
@@ -111,6 +117,7 @@ namespace SmartTools.Net.Utils
 			_searchlist = searchls;
 			_area = area;
 			_xmlpath = xmlpath;
+			_viewtitle= viewtitle;
 
 		}
         #endregion
@@ -798,7 +805,7 @@ namespace SmartTools.Net.Utils
 			}
 
 			//替换模板文本
-			text = text.Replace("$title$", "测试标题")
+			text = text.Replace("$title$", _viewtitle)
 				.Replace("$tableFields$", fields.ToString())
 				.Replace("$searchArea$", queryArea.ToString())
 				.Replace("$queryParam$", searchParam.ToString())
@@ -901,7 +908,7 @@ namespace SmartTools.Net.Utils
 			}
 
 			//替换模板文本
-			text = text.Replace("$title$", "测试标题")
+			text = text.Replace("$title$", _viewtitle)
 				.Replace("$formArea$", formArea.ToString())
 				.Replace("$GenDate$", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
 
@@ -999,7 +1006,7 @@ namespace SmartTools.Net.Utils
 			}
 
 			//替换模板文本
-			text = text.Replace("$title$", "测试标题")
+			text = text.Replace("$title$", _viewtitle)
 				.Replace("$formArea$", formArea.ToString())
 				.Replace("$GenDate$", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
 
@@ -1097,7 +1104,7 @@ namespace SmartTools.Net.Utils
 			}
 
 			//替换模板文本
-			text = text.Replace("$title$", "测试标题")
+			text = text.Replace("$title$", _viewtitle)
 				.Replace("$formArea$", formArea.ToString())
 				.Replace("$GenDate$", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
 

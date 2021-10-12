@@ -10,7 +10,9 @@
              d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
     <Grid>
 
+        <!--布局定义-->
         <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
@@ -21,6 +23,7 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
+        <!--第一行-->
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
@@ -39,6 +42,8 @@
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Center"
                 Name="connectString"
+                Height="36"
+                VerticalContentAlignment="Center"
                 Text="{Binding ConnectionString}"
                 Grid.Row="0"
             />
@@ -58,6 +63,7 @@
 
         </Grid>
 
+        <!--第二行-->
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
@@ -79,6 +85,7 @@
                                Margin="110,10,10,0" Grid.Column="1" SelectionChanged="dbtables_SelectionChanged"/>
         </Grid>
 
+        <!--第三行-->
         <Grid Grid.Row="2">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
@@ -102,6 +109,7 @@
                               Style="{StaticResource CheckComboBoxBaseStyle}" Margin="110,10,10,0" SelectionChanged="CheckComboBox_SelectionChanged"/>
         </Grid>
 
+        <!--第四行-->
         <Grid Grid.Row="3">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
@@ -120,6 +128,8 @@
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Center"
                 Name="slnfileaddr"
+                Height="36"
+                VerticalContentAlignment="Center"
                 Text="{Binding Slnfileaddr}"
                 Grid.Row="0"
                 IsEnabled="False"
@@ -141,6 +151,7 @@
 
         </Grid>
 
+        <!--第五行-->
         <Grid Grid.Row="4">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
@@ -163,6 +174,7 @@
                                    HorizontalAlignment="Stretch" ItemsSource="{Binding Arealist}" SelectionChanged="projectArea_SelectionChanged"/>
         </Grid>
 
+        <!--第六行-->
         <Grid Grid.Row="5">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
@@ -171,20 +183,25 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
+            <!--命名空间文本-->
             <Metro:AduFormLable Title="{DynamicResource rootnamespace}" Margin="40,10,10,0" HorizontalAlignment="Left"/>
 
+            <!--命名空间输入框-->
             <Metro:MetroTextBox
+                Height="36"
                 Margin="110,10,10,0"
                 InputHint="{DynamicResource rootnamespace}"
                 PopupHint="{DynamicResource rootnamespace}"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Center"
+                VerticalContentAlignment="Center"
                 Name="rootnamespace"
                 Text="{Binding Rootnamespace}"
                 Grid.Row="0"
             />
         </Grid>
 
+        <!--第七行-->
         <Grid Grid.Row="6">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
@@ -194,21 +211,64 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
+            <!--基类类型文本-->
+            <Metro:AduFormLable Title="{DynamicResource basetype}" Margin="40,10,10,0" HorizontalAlignment="Left"/>
+
+            <!--基类类型下拉框-->
+            <Metro:AduComboBox Name="basetype" SelectedValue="{Binding Basetype}" HorizontalAlignment="Stretch"
+                                ItemsSource="{Binding Basetypelist}" SelectedIndex="1"
+                                Margin="110,10,10,0" VerticalAlignment="Center" />
+
+            <!--视图标题-->
+            <Metro:AduFormLable Title="{DynamicResource viewtitle}" Margin="40,10,10,0" HorizontalAlignment="Left" Grid.Column="1"/>
+
+            <!--视图标题输入框-->
+            <Metro:MetroTextBox
+                Grid.Column="1"
+                Margin="110,10,10,0"
+                InputHint="{DynamicResource viewtitleHint}"
+                PopupHint="{DynamicResource viewtitleHint}"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Center"
+                Height="36"
+                VerticalContentAlignment="Center"
+                Name="viewtitle"
+                Text="{Binding Viewtitle}"
+                Grid.Row="0"
+            />
+
+        </Grid>
+
+        <!--第八行-->
+        <Grid Grid.Row="7">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <!--项目类型文本-->
             <Metro:AduFormLable Title="{DynamicResource projecttype}" Margin="40,-20,10,0" HorizontalAlignment="Left"/>
 
+            <!--项目类型下拉框-->
             <Metro:AduComboBox Name="projecttype" SelectedValue="{Binding Projecttype}" HorizontalAlignment="Stretch"
                                 ItemsSource="{Binding Projecttypelist}" SelectedIndex="1"
                                 Margin="110,-20,10,0" VerticalAlignment="Center" />
 
+            <!--生成类型文本-->
             <Metro:AduFormLable Title="{DynamicResource Outputtype}" Margin="40,-20,10,0" HorizontalAlignment="Left" Grid.Column="1"/>
 
+            <!--生成类型下拉框-->
             <Metro:AduComboBox Name="outputtype" SelectedValue="{Binding Outputtype}" HorizontalAlignment="Stretch" Grid.Column="1"
                                 ItemsSource="{Binding Outputtypelist}" SelectedIndex="0"
                                 Margin="110,-20,10,0" VerticalAlignment="Center" />
 
         </Grid>
 
-        <Grid Grid.Row="7">
+        <!--最后一行-->
+        <Grid Grid.Row="8">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
@@ -218,6 +278,7 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
+            <!--生成按钮-->
             <Button
                 Name="GenCode"
                 Margin="10"

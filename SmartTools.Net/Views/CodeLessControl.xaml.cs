@@ -181,7 +181,8 @@ namespace SmartTools.Net.Views
                     codeLessVM.primarykey,
                     codeLessVM.searchParams,
                     codeLessVM.projectArea,
-                    codeLessVM.xmlpath
+                    codeLessVM.xmlpath,
+                    codeLessVM.viewtitle
                 )
                 .BuildModel()
                 .BuildSearchModel()

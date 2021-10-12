@@ -26,6 +26,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="bin\**" />
+    <EmbeddedResource Remove="bin\**" />
+    <None Remove="bin\**" />
+    <Page Remove="bin\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Resources\icon\icon-white.png" />
     <None Remove="Resources\icon\icon.png" />
     <None Remove="Resources\icon\micon.ico" />
@@ -69,12 +76,16 @@
     <PackageReference Include="MvvmLight" Version="5.4.1.1" />
     <PackageReference Include="MvvmLightLibsStd10" Version="5.4.1.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="SmartSoft.common" Version="1.1.1" />
+    <PackageReference Include="SmartSoft.common" Version="1.1.7947" />
     <PackageReference Include="SqlSugarCore" Version="5.0.3.2" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Resources\icon\micon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SmartUpdate\Update.csproj" />
   </ItemGroup>
 
 </Project>

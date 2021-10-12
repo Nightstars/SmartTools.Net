@@ -251,5 +251,44 @@ namespace SmartTools.Net.ViewModel
             set { outputtype = value; Notify(); }
         }
         #endregion
+
+        #region 基类类型列表
+        /// <summary>
+        /// 基类类型列表
+        /// </summary>
+        public List<string> basetypelist { get; set; }
+
+        public List<string> Basetypelist
+        {
+            get { return basetypelist; }
+            set { basetypelist = value; Notify(); }
+        }
+        #endregion
+
+        #region 基类类型
+        /// <summary>
+        /// 基类类型
+        /// </summary>
+        public String basetype = "";
+
+        public string Basetype
+        {
+            get { return basetype; }
+            set { basetype = value; Notify(); }
+        }
+        #endregion
+
+        #region 视图标题
+        /// <summary>
+        /// 视图标题
+        /// </summary>
+        public String viewtitle = "";
+
+        public string Viewtitle
+        {
+            get { return viewtitle; }
+            set { viewtitle = value; Notify(); }
+        }
+        #endregion
     }
 }
