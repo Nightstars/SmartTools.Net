@@ -18,7 +18,7 @@ namespace SmartTools.Net
         {
             try
             {
-                //Task.Run(()=>new UpdateUtil().checckUpdate("./SmartTools.Net", "http://api.cloudapps.life:2"));
+                Task.Run(()=>new UpdateUtil().checckUpdate("./SmartTools.Net", "http://api.cloudapps.life:2"));
             }
             catch (Exception ex)
             {

@@ -15,7 +15,7 @@
   <PropertyGroup>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-    <BaseOutputPath>..\build\</BaseOutputPath>
+    <BaseOutputPath></BaseOutputPath>
     <DebugType>none</DebugType>
     <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
     <ApplicationIcon>F:\myproject\vs\SmartTools_CS\SmartUpdate\Resources\icon\icon.ico</ApplicationIcon>
@@ -24,6 +24,11 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <OutputPath>..\build\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <Optimize>True</Optimize>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <Optimize>True</Optimize>
   </PropertyGroup>
 
 </Project>

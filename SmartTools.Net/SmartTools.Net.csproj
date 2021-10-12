@@ -11,14 +11,14 @@
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
     <Deterministic>false</Deterministic>
-    <DebugType>full</DebugType>
+    <DebugType>none</DebugType>
     <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
     <ApplicationIcon>micon.ico</ApplicationIcon>
     <BaseOutputPath>..\build\</BaseOutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <Optimize>true</Optimize>
+    <Optimize>True</Optimize>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
