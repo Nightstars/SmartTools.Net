@@ -22,7 +22,7 @@ namespace SmartTools.Net.Views
     /// <summary>
     /// UserControl1.xaml 的交互逻辑
     /// </summary>
-    [SupportedOSPlatform("windows10.0")]
+    [SupportedOSPlatform("windows7.0")]
     public partial class CodeLessControl : UserControl
     {
         #region initialize
@@ -167,12 +167,17 @@ namespace SmartTools.Net.Views
 
             try
             {
+                var projname = $"{codeLessVM.project.Split(".").Reverse().Skip(1).Take(1).FirstOrDefault()}";
+                var tbname = $"{ FiledUtil.GetModelName(codeLessVM.dbTable) }";
+
+                var temp = codeLessVM.buildpath;
+
                 //生成代码
                 new CodeBuilder
                 (
                     codeLessVM.DbTableInfos,
                     codeLessVM._rootnamespace,
-                    $"{codeLessVM.project.Split(".").Reverse().Skip(1).Take(1).FirstOrDefault()}{FiledUtil.GetModelName(codeLessVM.dbTable)}",
+                    tbname.Contains(projname) ? $"{tbname}" : $"{projname}{tbname}",
                     codeLessVM.database,
                     codeLessVM.dbTable,
                     codeLessVM.buildpath,
@@ -181,7 +186,7 @@ namespace SmartTools.Net.Views
                     codeLessVM.primarykey,
                     codeLessVM.searchParams,
                     codeLessVM.projectArea,
-                    codeLessVM.xmlpath,
+                    $"{codeLessVM.buildpath.Split("Areas").FirstOrDefault()}{codeLessVM.xmlpath}",
                     codeLessVM.viewtitle
                 )
                 .BuildModel()
@@ -202,7 +207,8 @@ namespace SmartTools.Net.Views
                         logading.Close();
                         Process.Start("explorer.exe", $@"{AppDomain.CurrentDomain.BaseDirectory}Oupput\");
                     }
-                    logading.Close();
+                    else
+                        logading.Close();
                 }
                 logading.Close();
             }
@@ -261,7 +267,7 @@ namespace SmartTools.Net.Views
             {
                 var path = codeLessVM.projectlist.Where(x => x.projName == codeLessVM.project).FirstOrDefault().projFullName;
                 codeLessVM.projectPath = $"{path.Substring(0, path.LastIndexOf("/"))}/Areas";
-                codeLessVM.xmlpath = $"{path.Substring(0, path.LastIndexOf("/"))}/App_Data";
+                codeLessVM.xmlpath = "App_Data";
                 codeLessVM.Arealist = new List<string>();
                 if (Directory.Exists(@$"{codeLessVM.slnfileaddr.Substring(0, codeLessVM.slnfileaddr.LastIndexOf("\\"))}\{codeLessVM.projectPath}"))
                 {

@@ -11,13 +11,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="format-detection" content="telephone=no">
-    <link href="~/lib/layui-v2.5.4/css/layui.css" rel="stylesheet" />
-    <link href="~/css/combo.css" rel="stylesheet" />
-    <link href="~/css/combobox.css" rel="stylesheet" />
-    <link href="~/css/textbox.css" rel="stylesheet" />
-    <link href="~/css/common-Table-page-2.0.css" rel="stylesheet" />
-    <link href="~/css/common-3.0.css" rel="stylesheet" />
-    <link href="~/lib/iconfont/iconfont.css" rel="stylesheet" />
+    <link href="~/app/lib/layui-v2.5.4/css/layui.css" rel="stylesheet" />
+    <link href="~/app/css/combo.css" rel="stylesheet" />
+    <link href="~/app/css/combobox.css" rel="stylesheet" />
+    <link href="~/app/css/textbox.css" rel="stylesheet" />
+    <link href="~/app/css/common-Table-page-2.0.css" rel="stylesheet" />
+    <link href="~/app/css/common-3.0.css" rel="stylesheet" />
+    <link href="~/app/lib/iconfont/iconfont.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -92,19 +92,20 @@
     <lg:delicon action="$privilege$/delete" event="delete"></lg:delicon>
 </script>
 
-<script src="~/js/jquery.min.js"></script>
-<script src="~/lib/layui-v2.5.4/layui.js"></script>
-<script src="~/js/jquery.validate.min.js"></script>
-<script src="~/js/common-3.0.js"></script>
-<script src="~/js/easyloader.js"></script>
-<script src="~/js/jquery.parser.js"></script>
-<script src="~/js/jquery.linkbutton.js"></script>
-<script src="~/js/jquery.panel.js"></script>
-<script src="~/js/jquery.validatebox.js"></script>
-<script src="~/js/jquery.tooltip.js"></script>
-<script src="~/js/jquery.textbox.js"></script>
-<script src="~/js/jquery.combo.js"></script>
-<script src="~/js/jquery.combobox.js"></script>
+<script src="~/app/js/jquery.min.js"></script>
+<script src="~/app/lib/layui-v2.5.4/layui.js"></script>
+<script src="~/app/js/jquery.validate.min.js"></script>
+<script src="~/app/js/common-3.0.js"></script>
+<script src="~/app/js/easyloader.js"></script>
+<script src="~/app/js/jquery.parser.js"></script>
+<script src="~/app/js/jquery.linkbutton.js"></script>
+<script src="~/app/js/jquery.panel.js"></script>
+<script src="~/app/js/jquery.validatebox.js"></script>
+<script src="~/app/js/jquery.tooltip.js"></script>
+<script src="~/app/js/jquery.textbox.js"></script>
+<script src="~/app/js/jquery.combo.js"></script>
+<script src="~/app/js/jquery.combobox.js"></script>
+<script src="~/app/js/language.js"></script>
 
 <script>
 

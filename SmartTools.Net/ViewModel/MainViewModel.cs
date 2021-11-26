@@ -10,10 +10,12 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Runtime.Versioning;
 
 namespace SmartTools.Net.ViewModel
 {
-   public class MainViewModel : ViewModelBase
+    [SupportedOSPlatform("windows7.0")]
+    public class MainViewModel : ViewModelBase
    {
       public MainViewModel()
       {

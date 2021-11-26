@@ -14,12 +14,12 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
-    <link href="~/lib/layui-v2.5.4/css/layui.css" rel="stylesheet" />
-    <link href="~/css/combo.css" rel="stylesheet" />
-    <link href="~/css/combobox.css" rel="stylesheet" />
-    <link href="~/css/textbox.css" rel="stylesheet" />
-    <link href="~/css/common.single-page.opdialog-1.0.css" rel="stylesheet" />
-    <link href="~/css/common-3.0.css" rel="stylesheet" />
+    <link href="~/app/lib/layui-v2.5.4/css/layui.css" rel="stylesheet" />
+    <link href="~/app/css/combo.css" rel="stylesheet" />
+    <link href="~/app/css/combobox.css" rel="stylesheet" />
+    <link href="~/app/css/textbox.css" rel="stylesheet" />
+    <link href="~/app/css/common.single-page.opdialog-1.0.css" rel="stylesheet" />
+    <link href="~/app/css/common-3.0.css" rel="stylesheet" />
 </head>
 <body>
     <form id="DetailForm" class="layui-form drawer-form" onkeydown="if(event.keyCode==13){return false}">
@@ -29,8 +29,11 @@
 
         </div>
     </form>
-    <script src="~/js/jquery.min.js"></script>
-    <script src="~/lib/layui-v2.5.4/layui.js"></script>
+
+    <script src="~/app/js/jquery.min.js"></script>
+    <script src="~/app/lib/layui-v2.5.4/layui.js"></script>
+    <script src="~/app/js/language.js"></script>
+
     <script>
         layui.use(['form', 'layer'], function () {
             var form = layui.form,

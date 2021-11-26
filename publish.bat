@@ -17,6 +17,11 @@ rmdir /s/q .\update\pl
 rmdir /s/q .\update\pt-BR
 rmdir /s/q .\update\ru
 rmdir /s/q .\update\tr
+rmdir /s/q .\update\SmartSoft.common_Secure
+rmdir /s/q .\update\SmartTools.Net_Secure
+rmdir /s/q .\update\Update_Secure
+rmdir /s/q .\update\Oupput
+rmdir /s/q .\update\temp
 del .\update\Update.runtimeconfig.dev.json
 
 ::删除旧的zip

@@ -759,7 +759,7 @@ namespace SmartTools.Net.Utils
 						.AppendLine($"					</div>");
 
 					}
-					queryArea.AppendLine("				</div>");
+					queryArea.AppendLine("				</div>").AppendLine();
 				}
 
 				//不足一行需占位
@@ -777,7 +777,7 @@ namespace SmartTools.Net.Utils
 
 				}
 				if (residu != 0)
-					queryArea.AppendLine($"					<div class=\"layui-col-md{12-residu*3} layui-col-sm{12 - residu * 3} \">");
+					queryArea.AppendLine($"					<div class=\"layui-col-md{12-residu*3} layui-col-sm{12 - residu * 3} \" ></div>");
 				queryArea.AppendLine("				</div>");
 
 			}
@@ -860,7 +860,7 @@ namespace SmartTools.Net.Utils
 						formArea.AppendLine("				<div class=\"layui-col-sm2 layui-col-xs2 layui-lb\">")
 						.AppendLine($"					<label>{item.columnDescription}</label>")
 						.AppendLine($"				</div>")
-						.AppendLine("				<div class=\"layui-col-sm2 layui-col-xs2 layui-lb\">");
+						.AppendLine("				<div class=\"layui-col-sm2 layui-col-xs2\">");
 
 						if (!string.IsNullOrWhiteSpace(item.type) && item.type.Contains("int"))
 							formArea.AppendLine($"					<input name='{FiledUtil.GetField(item.columnName)}' value='@Model.{FiledUtil.GetField(item.columnName)}' id='{FiledUtil.GetField(item.columnName)}' type='text' class='layui-input' autocomplete=\"off\" onkeypress=\"return (/^[\\d]*$/.test(String.fromCharCode(event.keyCode)))\" onchange=\"NumFormat(this, 0)\" oninput=\"NumFormat(this, 0)\" >");
@@ -886,7 +886,7 @@ namespace SmartTools.Net.Utils
 					formArea.AppendLine("				<div class=\"layui-col-sm2 layui-col-xs2 layui-lb\">")
 					.AppendLine($"					<label>{item.columnDescription}</label>")
 					.AppendLine($"				</div>")
-					.AppendLine("				<div class=\"layui-col-sm2 layui-col-xs2 layui-lb\">");
+					.AppendLine("				<div class=\"layui-col-sm2 layui-col-xs2\">");
 
 					if (!string.IsNullOrWhiteSpace(item.type) && item.type.Contains("int"))
 						formArea.AppendLine($"					<input name='{FiledUtil.GetField(item.columnName)}' value='@Model.{FiledUtil.GetField(item.columnName)}' id='{FiledUtil.GetField(item.columnName)}' type='text' class='layui-input' autocomplete=\"off\" onkeypress=\"return (/^[\\d]*$/.test(String.fromCharCode(event.keyCode)))\" onchange=\"NumFormat(this, 0)\" oninput=\"NumFormat(this, 0)\" >");
@@ -959,7 +959,7 @@ namespace SmartTools.Net.Utils
 						formArea.AppendLine("				<div class=\"layui-col-sm2 layui-col-xs2 layui-lb\">")
 						.AppendLine($"					<label>{item.columnDescription}</label>")
 						.AppendLine($"				</div>")
-						.AppendLine("				<div class=\"layui-col-sm2 layui-col-xs2 layui-lb\">");
+						.AppendLine("				<div class=\"layui-col-sm2 layui-col-xs2\">");
 
 						if (!string.IsNullOrWhiteSpace(item.type) && item.type.Contains("int"))
 							formArea.AppendLine($"					<input name='{FiledUtil.GetField(item.columnName)}' value='@Model.{FiledUtil.GetField(item.columnName)}' id='{FiledUtil.GetField(item.columnName)}' type='text' class='layui-input' autocomplete=\"off\" onkeypress=\"return (/^[\\d]*$/.test(String.fromCharCode(event.keyCode)))\" onchange=\"NumFormat(this, 0)\" oninput=\"NumFormat(this, 0)\" >");
@@ -985,7 +985,7 @@ namespace SmartTools.Net.Utils
 					formArea.AppendLine("				<div class=\"layui-col-sm2 layui-col-xs2 layui-lb\">")
 					.AppendLine($"					<label>{item.columnDescription}</label>")
 					.AppendLine($"				</div>")
-					.AppendLine("				<div class=\"layui-col-sm2 layui-col-xs2 layui-lb\">");
+					.AppendLine("				<div class=\"layui-col-sm2 layui-col-xs2\">");
 
 					if (!string.IsNullOrWhiteSpace(item.type) && item.type.Contains("int"))
 						formArea.AppendLine($"					<input name='{FiledUtil.GetField(item.columnName)}' value='@Model.{FiledUtil.GetField(item.columnName)}' id='{FiledUtil.GetField(item.columnName)}' type='text' class='layui-input' autocomplete=\"off\" onkeypress=\"return (/^[\\d]*$/.test(String.fromCharCode(event.keyCode)))\" onchange=\"NumFormat(this, 0)\" oninput=\"NumFormat(this, 0)\" >");
@@ -1032,7 +1032,7 @@ namespace SmartTools.Net.Utils
 		/// </summary>
 		public void BuildDetailsForCms()
 		{
-			string text = FileUtil.GetTplContent("Tpl.cms.SmartTools.Net.Views.edit.tpl");
+			string text = FileUtil.GetTplContent("Tpl.cms.SmartTools.Net.Views.details.tpl");
 
 			//查询字段
 			StringBuilder formArea = new StringBuilder();
@@ -1057,16 +1057,16 @@ namespace SmartTools.Net.Utils
 						formArea.AppendLine("				<div class=\"layui-col-sm2 layui-col-xs2 layui-lb\">")
 						.AppendLine($"					<label>{item.columnDescription}</label>")
 						.AppendLine($"				</div>")
-						.AppendLine("				<div class=\"layui-col-sm2 layui-col-xs2 layui-lb\">");
+						.AppendLine("				<div class=\"layui-col-sm2 layui-col-xs2\">");
 
 						if (!string.IsNullOrWhiteSpace(item.type) && item.type.Contains("int"))
-							formArea.AppendLine($"					<input name='{FiledUtil.GetField(item.columnName)}' value='@Model.{FiledUtil.GetField(item.columnName)}' id='{FiledUtil.GetField(item.columnName)}' type='text' class='layui-input' autocomplete=\"off\" onkeypress=\"return (/^[\\d]*$/.test(String.fromCharCode(event.keyCode)))\" onchange=\"NumFormat(this, 0)\" oninput=\"NumFormat(this, 0)\" >");
+							formArea.AppendLine($"					<input name='{FiledUtil.GetField(item.columnName)}' value='@Model.{FiledUtil.GetField(item.columnName)}' id='{FiledUtil.GetField(item.columnName)}' type='text' class='layui-input' autocomplete=\"off\" onkeypress=\"return (/^[\\d]*$/.test(String.fromCharCode(event.keyCode)))\" onchange=\"NumFormat(this, 0)\" oninput=\"NumFormat(this, 0)\" readonly>");
 						else if (!string.IsNullOrWhiteSpace(item.type) && item.type.Contains("date"))
-							formArea.AppendLine($"					<input name='{FiledUtil.GetField(item.columnName)}' value='@Model.{FiledUtil.GetField(item.columnName)}' id='{FiledUtil.GetField(item.columnName)}' type='text' class='layui-input' autocomplete=\"off\" onchange=\"this.value = this.value.replace(/\\s/g, '')\" oninput=\"this.value = this.value.replace(/\\s/g, '')\" >");
+							formArea.AppendLine($"					<input name='{FiledUtil.GetField(item.columnName)}' value='@Model.{FiledUtil.GetField(item.columnName)}' id='{FiledUtil.GetField(item.columnName)}' type='text' class='layui-input' autocomplete=\"off\" onchange=\"this.value = this.value.replace(/\\s/g, '')\" oninput=\"this.value = this.value.replace(/\\s/g, '')\" readonly>");
 						else if (!string.IsNullOrWhiteSpace(item.type) && (item.type.Contains("float") || item.type.Contains("numeric") || item.type.Contains("decimal")))
-							formArea.AppendLine($"					<input name='{FiledUtil.GetField(item.columnName)}' value='@Model.{FiledUtil.GetField(item.columnName)}' id='{FiledUtil.GetField(item.columnName)}' type='text' class='layui-input' autocomplete=\"off\" Onkeyup=\"this.value = this.value.toString().match(/^\\d{{0,14}}(?:\\.\\d{{0,5}})?/)\" onchange=\"NumFormat(this, 5)\" oninput=\"NumFormat(this, 5)\" >");
+							formArea.AppendLine($"					<input name='{FiledUtil.GetField(item.columnName)}' value='@Model.{FiledUtil.GetField(item.columnName)}' id='{FiledUtil.GetField(item.columnName)}' type='text' class='layui-input' autocomplete=\"off\" Onkeyup=\"this.value = this.value.toString().match(/^\\d{{0,14}}(?:\\.\\d{{0,5}})?/)\" onchange=\"NumFormat(this, 5)\" oninput=\"NumFormat(this, 5)\" readonly >");
 						else
-							formArea.AppendLine($"					<input maxlength='{item.length}' name='{FiledUtil.GetField(item.columnName)}' value='@Model.{FiledUtil.GetField(item.columnName)}' id='{FiledUtil.GetField(item.columnName)}' type='text' class='layui-input' autocomplete=\"off\" >");
+							formArea.AppendLine($"					<input maxlength='{item.length}' name='{FiledUtil.GetField(item.columnName)}' value='@Model.{FiledUtil.GetField(item.columnName)}' id='{FiledUtil.GetField(item.columnName)}' type='text' class='layui-input' autocomplete=\"off\" readonly>");
 
 						formArea.AppendLine($"				</div>");
 
@@ -1083,14 +1083,14 @@ namespace SmartTools.Net.Utils
 					formArea.AppendLine("				<div class=\"layui-col-sm2 layui-col-xs2 layui-lb\">")
 					.AppendLine($"					<label>{item.columnDescription}</label>")
 					.AppendLine($"				</div>")
-					.AppendLine("				<div class=\"layui-col-sm2 layui-col-xs2 layui-lb\">");
+					.AppendLine("				<div class=\"layui-col-sm2 layui-col-xs2\">");
 
 					if (!string.IsNullOrWhiteSpace(item.type) && item.type.Contains("int"))
-						formArea.AppendLine($"					<input name='{FiledUtil.GetField(item.columnName)}' value='@Model.{FiledUtil.GetField(item.columnName)}' id='{FiledUtil.GetField(item.columnName)}' type='text' class='layui-input' autocomplete=\"off\" onkeypress=\"return (/^[\\d]*$/.test(String.fromCharCode(event.keyCode)))\" onchange=\"NumFormat(this, 0)\" oninput=\"NumFormat(this, 0)\" >");
+						formArea.AppendLine($"					<input name='{FiledUtil.GetField(item.columnName)}' value='@Model.{FiledUtil.GetField(item.columnName)}' id='{FiledUtil.GetField(item.columnName)}' type='text' class='layui-input' autocomplete=\"off\" onkeypress=\"return (/^[\\d]*$/.test(String.fromCharCode(event.keyCode)))\" onchange=\"NumFormat(this, 0)\" oninput=\"NumFormat(this, 0)\" readonly>");
 					else if (!string.IsNullOrWhiteSpace(item.type) && item.type.Contains("date"))
-						formArea.AppendLine($"					<input name='{FiledUtil.GetField(item.columnName)}' value='@Model.{FiledUtil.GetField(item.columnName)}' id='{FiledUtil.GetField(item.columnName)}' type='text' class='layui-input' autocomplete=\"off\" onchange=\"this.value = this.value.replace(/\\s/g, '')\" oninput=\"this.value = this.value.replace(/\\s/g, '')\" >");
+						formArea.AppendLine($"					<input name='{FiledUtil.GetField(item.columnName)}' value='@Model.{FiledUtil.GetField(item.columnName)}' id='{FiledUtil.GetField(item.columnName)}' type='text' class='layui-input' autocomplete=\"off\" onchange=\"this.value = this.value.replace(/\\s/g, '')\" oninput=\"this.value = this.value.replace(/\\s/g, '')\" readonly>");
 					else if (!string.IsNullOrWhiteSpace(item.type) && (item.type.Contains("float") || item.type.Contains("numeric") || item.type.Contains("decimal")))
-						formArea.AppendLine($"					<input name='{FiledUtil.GetField(item.columnName)}' value='@Model.{FiledUtil.GetField(item.columnName)}' id='{FiledUtil.GetField(item.columnName)}' type='text' class='layui-input' autocomplete=\"off\" Onkeyup=\"this.value = this.value.toString().match(/ ^\\d{{ 0,14}} (?:\\.\\d{{ 0,5}})?/)\" onchange=\"NumFormat(this, 5)\" oninput=\"NumFormat(this, 5)\" >");
+						formArea.AppendLine($"					<input name='{FiledUtil.GetField(item.columnName)}' value='@Model.{FiledUtil.GetField(item.columnName)}' id='{FiledUtil.GetField(item.columnName)}' type='text' class='layui-input' autocomplete=\"off\" Onkeyup=\"this.value = this.value.toString().match(/ ^\\d{{ 0,14}} (?:\\.\\d{{ 0,5}})?/)\" onchange=\"NumFormat(this, 5)\" oninput=\"NumFormat(this, 5)\" readonly>");
 					else
 						formArea.AppendLine($"					<input maxlength='{item.length}' name='{FiledUtil.GetField(item.columnName)}' value='@Model.{FiledUtil.GetField(item.columnName)}' id='{FiledUtil.GetField(item.columnName)}' type='text' class='layui-input' autocomplete=\"off\" >");
 
@@ -1113,13 +1113,13 @@ namespace SmartTools.Net.Utils
 			{
 				if (!Directory.Exists($"{_buildpath}/Views/{_modelName}"))
 					Directory.CreateDirectory($"{_buildpath}/Views/{_modelName}");
-				File.WriteAllText($"{_buildpath}/Views/{_modelName}/Detail.cshtml", text, Encoding.UTF8);
+				File.WriteAllText($"{_buildpath}/Views/{_modelName}/Details.cshtml", text, Encoding.UTF8);
 			}
 			else
 			{
 				if (!Directory.Exists($"./Oupput/Views/{_modelName}"))
 					Directory.CreateDirectory($"./Oupput/Views/{_modelName}");
-				File.WriteAllText($"./Oupput/Views/{_modelName}/Detail.cshtml", text, Encoding.UTF8);
+				File.WriteAllText($"./Oupput/Views/{_modelName}/Details.cshtml", text, Encoding.UTF8);
 			}
 		}
 		#endregion
@@ -1232,7 +1232,7 @@ namespace SmartTools.Net.Utils
 				{
 					xelement3.Add(new XElement("column", new object[]
 					{
-						new XAttribute("field", FiledUtil.GetField(item.columnName)),
+						new XAttribute("field", item.columnName),
 						new XAttribute("view", item.columnDescription)
 					}));
 				}

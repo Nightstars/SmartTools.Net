@@ -33,7 +33,7 @@ namespace SmartTools.Net.ViewModel
         /// 数据库连接字符串
         /// </summary>
         //public String connectString= "Database=CMS;Server=127.0.0.1,6666;User ID = sa; Password = Ihavenoidea@0;";
-        public String connectString= "Database=CMS;Server=192.168.2.52,61440;User ID = dbwork_v6; Password = dbwork2021.;";
+        public String connectString= "Database=CMS;Server=192.168.2.52,63765;User ID = sa; Password = Longnows2021;";
 
         public string ConnectionString
         {
