@@ -523,7 +523,7 @@ namespace SmartTools.Net.Utils
 				.AppendLine()
 				.AppendLine($"		public override string ImportXmlNode => \"{_modelName.ToUpper()}_IMPORT\";")
 				.AppendLine()
-				.AppendLine($"		public override string ExportFileName => \"xxx\";")
+				.AppendLine($"		public override string ExportFileName => \"{_viewtitle}\";")
 				.AppendLine()
 				.AppendLine($"		public override string ExportXmlName => \"GenExport.xml\";")
 				.AppendLine()
@@ -646,6 +646,7 @@ namespace SmartTools.Net.Utils
 
 			string text = FileUtil.GetTplContent("Tpl.cms.SmartTools.Net.service.tpl")
 			.Replace("$Rootnamespace$", _rootnamespace)
+			.Replace("$DBTable$", $"{_database}.dbo.{_dbtable}")
 			.Replace("$ModelName$", _modelName)
 			.Replace("$GenDate$", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
 			.Replace("$sqls$", stringBuilder.ToString());
@@ -902,7 +903,7 @@ namespace SmartTools.Net.Utils
 
 				}
 				if (residu != 0 && residu != 3)
-					formArea.AppendLine($"				<div class=\"layui-col-md{12 - residu * 4} layui-col-sm{12 - residu * 4} \">");
+					formArea.AppendLine($"				<div class=\"layui-col-md{12 - residu * 4} layui-col-sm{12 - residu * 4} \"></div>");
 				formArea.AppendLine($"			</div>");
 
 			}
@@ -1000,7 +1001,7 @@ namespace SmartTools.Net.Utils
 
 				}
 				if (residu != 0 && residu != 3)
-					formArea.AppendLine($"				<div class=\"layui-col-md{12 - residu * 4} layui-col-sm{12 - residu * 4} \">");
+					formArea.AppendLine($"				<div class=\"layui-col-md{12 - residu * 4} layui-col-sm{12 - residu * 4} \"></div>");
 				formArea.AppendLine($"			</div>");
 
 			}
@@ -1098,7 +1099,7 @@ namespace SmartTools.Net.Utils
 
 				}
 				if (residu != 0 && residu != 3)
-					formArea.AppendLine($"				<div class=\"layui-col-md{12 - residu * 4} layui-col-sm{12 - residu * 4} \">");
+					formArea.AppendLine($"				<div class=\"layui-col-md{12 - residu * 4} layui-col-sm{12 - residu * 4} \"></div>");
 				formArea.AppendLine($"			</div>").AppendLine();
 
 			}

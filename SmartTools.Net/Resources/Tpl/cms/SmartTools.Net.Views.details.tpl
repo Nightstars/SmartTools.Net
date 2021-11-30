@@ -54,7 +54,7 @@
 
                     //数字格式化
                     /*
-                    $("#ExtQty").val(parseFloat('@Model.ExtQty'))
+                    $("#ExtQty").val(parseFloat('Model.Qty'))
                     */
 
                     /********************此处为初始化渲染示例，请根据实际业务调整 end********************/

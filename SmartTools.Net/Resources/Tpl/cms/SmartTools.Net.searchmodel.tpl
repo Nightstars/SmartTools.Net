@@ -15,6 +15,11 @@ namespace $Rootnamespace$
     {
         $EntityField$
 
+        /// <summary>
+        /// sql seqnos
+        /// </summary>
+        public string[] keys { get; set; }
+
         public $ModelName$SearchDto()
         {
             this.OrderBy = OrderBy.DESC;;
